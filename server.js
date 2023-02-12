@@ -1,11 +1,13 @@
 import * as dotenv from "dotenv"; // to get variables from .env
 import app from "./app.js";
+import { connectDb } from "./src/db/dbConnection.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 const start = async () => {
   try {
+    connectDb();
     app.listen(PORT, (err) => {
       if (err) console.log("error st server launch", err);
 
