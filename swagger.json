@@ -21,16 +21,20 @@
       "description": "API for users in the system"
     },
     {
-      "name": "Categories",
-      "description": "API for categories in the system"
-    },
-    {
       "name": "Notices",
       "description": "API for notices in the system"
     },
     {
       "name": "News",
       "description": "API for news in the system"
+    },
+    {
+      "name": "Services",
+      "description": "API for services-sidebar in the system"
+    },
+    {
+      "name": "Pets",
+      "description": "API for pets in the system"
     }
   ],
 
