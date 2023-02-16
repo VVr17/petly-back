@@ -10,11 +10,17 @@ export const authMiddleware = async (req, res, next) => {
     if (!type) throw new createError(401, "Token type invalid");
     if (!token) throw new createError(401, "Authorization token required");
 
-    // TODO: add JWT validation
+    const { userId } = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = { userId };
 
     next();
   } catch (error) {
-    //TODO: add JWT error
+    if (
+      error.name === "TokenExpiredError" ||
+      error.name === "JsonWebTokenError"
+    ) {
+      next(new createError(401, `Token error: ${error.message}`));
+    }
     next(error);
   }
 };
