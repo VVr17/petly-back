@@ -4,6 +4,6 @@ import { getNewsController } from "../../controllers/news/getNews.js";
 
 const router = new express.Router();
 
-router.get("/", errorWrapper(getNewsController));
+router.get("/news", errorWrapper(getNewsController));
 
 export default router;
