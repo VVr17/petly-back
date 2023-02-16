@@ -28,7 +28,7 @@ app.use("/api/pets", petsRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((_, res) => {
-  res.status(404).json("Use api on route not found");
+  res.status(404).json({ message: "Use api on route not found" });
 });
 
 app.use((err, req, res, next) => {
@@ -36,15 +36,15 @@ app.use((err, req, res, next) => {
 
   if (err.status) {
     const { status, message } = err;
-    return res.status(status).json(message);
+    return res.status(status).json({ message });
   }
 
   if (err.name === "ValidationError") {
     const { message } = err;
-    return res.status(400).json(message);
+    return res.status(400).json({ message });
   }
 
-  res.status(500).json("Internal Server Error");
+  res.status(500).json({ message: "Internal Server Error" });
 });
 
 export default app;
