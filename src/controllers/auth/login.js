@@ -12,7 +12,6 @@ export const loginController = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email }, { email: 1, password: 1 });
-
   if (!user) throw new createError(401, `Email or password is wrong`);
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -29,8 +28,9 @@ export const loginController = async (req, res) => {
     token,
     user: {
       email: user.email,
-      subscription: user.subscription,
-      avatarURL: user.avatarURL,
+      name: user.name,
+      city: user.city,
+      phone: user.phone,
     },
   };
 
