@@ -1,5 +1,6 @@
 import { Notice } from "../../models/noticeModel.js";
 import NotFound from "http-errors";
+import { setSuccessResponse } from "../../helpers/setResponse.js";
 
 export const getByIdController = async (req, res) => {
   const noticeId = req.params.noticeId;
@@ -8,5 +9,5 @@ export const getByIdController = async (req, res) => {
   if (!data) {
     throw NotFound("the notice with this ID does not exist");
   }
-  res.status(200).json(data);
+  res.json(setSuccessResponse(200, data));
 };

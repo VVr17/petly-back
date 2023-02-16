@@ -1,3 +1,4 @@
+import { setSuccessResponse } from "../../helpers/setResponse.js";
 import { Notice } from "../../models/noticeModel.js";
 // import { NoticeSell } from "../../models/noticeSellModel.js";
 
@@ -7,5 +8,5 @@ export const addNoticeController = async (req, res) => {
 
   const data = await Notice.create({ ...body, category: categoryName });
 
-  res.status(200).json(data);
+  res.json(setSuccessResponse(200, data));
 };

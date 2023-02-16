@@ -30,7 +30,7 @@ router.delete(
 );
 
 router.post(
-  "/:categoryName",
+  "/category/:categoryName",
   validateBody(noticeSchema),
   errorWrapper(addNoticeController)
 );
