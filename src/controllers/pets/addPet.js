@@ -1,3 +1,20 @@
+// import { nanoid } from "nanoid"; добавить либу и сгенеровать айди
+// import { Pet } from "../../models/petModel.js";
+import { setSuccessResponse } from "../../helpers/setResponse.js";
+// import createError from "http-errors";
+
 export const addPetController = async (req, res) => {
-  res.status(200).json("add pet");
+  const { name, birthday, breed, photoURL, comments } = req.body;
+
+  const savedPet = await Pet.create({
+    // _id: nanoid(),
+    name,
+    birthday,
+    breed,
+    // photoURL: 
+    comments,
+});
+
+
+  return res.json(setSuccessResponse(201, savedPet));
 };

@@ -1,3 +1,9 @@
+import { User } from "../../models/userModel.js";
+import { setSuccessResponse } from "../../helpers/setResponse.js";
+
 export const logoutController = async (req, res) => {
-  res.status(200).json("logout");
+  const { _id } = req.user;
+
+  await User.findByIdAndUpdate(_id, { token: null });
+  return res.json(setSuccessResponse(204));
 };
