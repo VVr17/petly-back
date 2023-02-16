@@ -9,9 +9,12 @@ const noticeModel = new Schema(
       maxLength: 48,
       required: [true, "Set title for the notice"],
     },
-    owner: {
-      type: SchemaTypes.ObjectId,
-      ref: "user",
+    // owner: {
+    //   type: SchemaTypes.ObjectId,
+    //   ref: "user",
+    // },
+    image: {
+      type: String,
     },
     name: {
       type: String,
@@ -22,6 +25,10 @@ const noticeModel = new Schema(
       type: String,
       minLength: 2,
       maxLength: 24,
+    },
+    sex: {
+      type: String,
+      enum: ["male", "female"],
     },
     birthDate: {
       type: Date,
@@ -35,10 +42,14 @@ const noticeModel = new Schema(
       maxLength: 120,
       required: true,
     },
+    category: {
+      type: String,
+      enum: ["sell", "lost/found", "in good hands"],
+      required: true,
+    },
     price: {
       type: Number,
       min: 1,
-      required: true,
     },
   },
   {
