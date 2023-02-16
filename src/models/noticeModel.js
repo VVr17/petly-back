@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { SchemaTypes } from "mongoose";
 const Schema = mongoose.Schema;
 
 const noticeModel = new Schema(
@@ -8,6 +8,10 @@ const noticeModel = new Schema(
       minLength: 2,
       maxLength: 48,
       required: [true, "Set title for the notice"],
+    },
+    owner: {
+      type: SchemaTypes.ObjectId,
+      ref: "user",
     },
     name: {
       type: String,
@@ -38,10 +42,8 @@ const noticeModel = new Schema(
     },
   },
   {
-    favorite: {
-      type: Boolean,
-      default: false,
-    },
+    timestamps: true,
+    versionKey: false,
   }
 );
 
