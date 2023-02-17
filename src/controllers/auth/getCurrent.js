@@ -3,7 +3,7 @@ import { setSuccessResponse } from "../../helpers/setResponse.js";
 import createError from "http-errors";
 
 export const getCurrentUserController = async (req, res) => {
-  const { _id } = req;
+  const { _id } = req.user;
   
   const userDataWithPets = await User.findById(_id).populate("pets", { owner: _id });
   if (!userData) {
