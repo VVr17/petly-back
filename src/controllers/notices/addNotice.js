@@ -4,8 +4,8 @@ import { Notice } from "../../models/noticeModel.js";
 import { validateNoticeBody } from "../../helpers/validateNoticeBody.js";
 
 export const addNoticeController = async (req, res) => {
-  const categoryName = req.params.categoryName;
-  const body = req.body;
+  const { categoryName } = req.params;
+  const { body } = req;
   const { userId } = req.user;
 
   validateNoticeBody(categoryName, body);
