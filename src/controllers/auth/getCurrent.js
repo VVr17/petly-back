@@ -3,10 +3,13 @@ import { setSuccessResponse } from "../../helpers/setResponse.js";
 import createError from "http-errors";
 
 export const getCurrentUserController = async (req, res) => {
-  const { _id } = req;
-  
-  const userDataWithPets = await User.findById(_id).populate("pets", { owner: _id });
-  if (!userData) {
+  const { userId } = req.user;
+
+  const userDataWithPets = await User.findById(userId).populate("pets", {
+    owner: userId,
+  });
+
+  if (!userDataWithPets) {
     throw new createError(404, `Not find user with id: ${_id}!`);
   }
 

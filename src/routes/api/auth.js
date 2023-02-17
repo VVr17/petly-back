@@ -22,6 +22,6 @@ router.post(
 router.post("/login", validateBody(loginSchema), errorWrapper(loginController));
 router.get("/logout", authMiddleware, errorWrapper(logoutController));
 router.get("/current", authMiddleware, errorWrapper(getCurrentUserController));
-router.patch("/current", errorWrapper(updateUserController));
+router.put("/current", authMiddleware, errorWrapper(updateUserController));
 
 export default router;
