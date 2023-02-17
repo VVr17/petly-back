@@ -1,3 +1,7 @@
+import { setSuccessResponse } from "../../helpers/setResponse.js";
+import { Services } from "../../models/servicesModel.js";
+
 export const getServicesController = async (req, res) => {
-  res.status(200).json("services");
-};
+    const result = await Services.find();
+    res.json(setSuccessResponse(200, result));
+}
