@@ -8,6 +8,7 @@ import {
   loginController,
   logoutController,
   getCurrentUserController,
+  updateUserController,
 } from "../../controllers/auth/index.js";
 import { loginSchema } from "../../schemas/loginSchema.js";
 
@@ -21,5 +22,6 @@ router.post(
 router.post("/login", validateBody(loginSchema), errorWrapper(loginController));
 router.get("/logout", authMiddleware, errorWrapper(logoutController));
 router.get("/current", authMiddleware, errorWrapper(getCurrentUserController));
+router.put("/current", authMiddleware, errorWrapper(updateUserController));
 
 export default router;

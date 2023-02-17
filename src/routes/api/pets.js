@@ -11,9 +11,9 @@ import { petSchema } from "../../schemas/petSchema.js";
 
 const router = new express.Router();
 
-// router.use(authMiddleware); // restricted routes
+router.use(authMiddleware); // restricted routes
 
-router.get("/", errorWrapper(getPetsController));
+// router.get("/", errorWrapper(getPetsController));
 router.post("/", validateBody(petSchema), errorWrapper(addPetController));
 router.delete("/:petId", errorWrapper(deletePetController));
 
