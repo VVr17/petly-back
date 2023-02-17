@@ -16,25 +16,33 @@ import {
 
 const router = new express.Router();
 
-router.use(authMiddleware); // restricted routes
-
 router.get("/", authMiddleware, errorWrapper(getUserNoticesController));
 router.get("/category/:categoryName", errorWrapper(getByCategoryController));
 router.get("/id/:noticeId", errorWrapper(getByIdController));
 
-router.post("/favorites/:noticeId", errorWrapper(addToFavoriteController));
-router.get("/favorites", errorWrapper(getFavoritesController));
+router.post(
+  "/favorites/:noticeId",
+  authMiddleware,
+  errorWrapper(addToFavoriteController)
+);
+router.get("/favorites", authMiddleware, errorWrapper(getFavoritesController));
 router.delete(
   "/favorites/:noticeId",
+  authMiddleware,
   errorWrapper(removeFromFavoritesController)
 );
 
 router.post(
   "/category/:categoryName",
+  authMiddleware,
   validateBody(noticeSchema),
   errorWrapper(addNoticeController)
 );
 
-router.delete("/id/:noticeId", authMiddleware, errorWrapper(removeNoticeController));
+router.delete(
+  "/id/:noticeId",
+  authMiddleware,
+  errorWrapper(removeNoticeController)
+);
 
 export default router;
