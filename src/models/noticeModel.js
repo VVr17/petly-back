@@ -9,10 +9,10 @@ const noticeModel = new Schema(
       maxLength: 48,
       required: [true, "Set title for the notice"],
     },
-    // owner: {
-    //   type: SchemaTypes.ObjectId,
-    //   ref: "user",
-    // },
+    owner: {
+      type: SchemaTypes.ObjectId,
+      ref: "user",
+    },
     image: {
       type: String,
     },
