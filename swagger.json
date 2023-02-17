@@ -50,7 +50,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginResponse"
+                "$ref": "#/components/schemas/User"
               }
             }
           }
@@ -61,7 +61,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/LoginResponse"
                 }
               }
             }
