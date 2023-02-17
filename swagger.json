@@ -196,6 +196,22 @@
     "/api/notices": {
       "get": {
         "tags": ["Notices"],
+        "summary": "Get notices by key words",
+        "parameters": [],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Get notices successfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/notices/user": {
+      "get": {
+        "tags": ["Notices"],
         "summary": "Get authorized user notices ",
         "security": [{ "Bearer": [] }],
         "parameters": [],
