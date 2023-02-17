@@ -139,6 +139,31 @@
             "description": "Internal server error"
           }
         }
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update current user",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Current User has been updated",
+            "content": {
+              "application/json": {
+                "sсhema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
       }
     },
     "/api/auth/logout": {
@@ -158,6 +183,281 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/notices": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get authorized user notices ",
+        "security": [{ "Bearer": [] }],
+        "parameters": [],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Get authorized user notices successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/notices/category/{categoryName}": {
+      "parameters": [
+        {
+          "name": "categoryName",
+          "in": "path",
+          "required": true,
+          "description": "Name of category that notices needs to be found ['sell', 'lost_found', 'in_good_hands']",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get authorized user notices ",
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Get notices by category successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Notices"],
+        "summary": "Post notice to chosen category by authorized user",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Notice has been posted successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/notices/id/{noticeId}": {
+      "parameters": [
+        {
+          "name": "noticeId",
+          "in": "path",
+          "required": true,
+          "description": "Notice Id to be found",
+          "type": "string",
+          "format": "ObjectId"
+        }
+      ],
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get notice by Id",
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Notices by id has been found successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Notices"],
+        "summary": "Delete notice completely by authorized user their own notice",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Notice has been deleted successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/notices/favorites/{noticeId}": {
+      "parameters": [
+        {
+          "name": "noticeId",
+          "in": "path",
+          "required": true,
+          "description": "Notice Id to be found",
+          "type": "string",
+          "format": "ObjectId"
+        }
+      ],
+      "post": {
+        "tags": ["Notices"],
+        "summary": "Add notice to user's favorite",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Notice has been added successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Notices"],
+        "summary": "Delete notice from user's favorite",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Notice has been deleted successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/notices/favorites": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Het user's favorite notices",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Favorite notices has been found successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/news": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get news",
+        "parameters": [],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "News have been found successfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/services": {
+      "get": {
+        "tags": ["Services"],
+        "summary": "Get services",
+        "parameters": [],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Services have been found successfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/pets": {
+      "post": {
+        "tags": ["Pets"],
+        "summary": "Add pet by authorized user",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Pets has been added successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/pets/{petId}": {
+      "parameters": [
+        {
+          "name": "petId",
+          "in": "path",
+          "required": true,
+          "description": "Pet Id to be found",
+          "type": "string",
+          "format": "ObjectId"
+        }
+      ],
+      "delete": {
+        "tags": ["Pets"],
+        "summary": "Delete pet by authorized user",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Pet has been deleted successfully"
+          },
+          "400": {
+            "description": "Bad request"
           },
           "401": {
             "description": "Unauthorized"
@@ -187,7 +487,7 @@
             "description": "User`s name",
             "example": "FirstName LastName"
           },
-          "address": {
+          "city": {
             "type": "string",
             "description": "User`s city, region",
             "example": "Kyiv, Ukraine"
@@ -195,7 +495,7 @@
           "phone": {
             "type": "string",
             "description": "User`s phone",
-            "example": "(123)456-78-90"
+            "example": "+380123456789"
           }
         }
       },
@@ -205,7 +505,7 @@
       },
       "RegistrationRequest": {
         "type": "object",
-        "required": ["email", "password"],
+        "required": ["email", "password", "name", "city", "phone"],
         "properties": {
           "email": {
             "type": "string",
@@ -223,7 +523,7 @@
             "description": "User`s name",
             "example": "FirstName LastName"
           },
-          "address": {
+          "city": {
             "type": "string",
             "description": "User`s city, region",
             "example": "Kyiv, Ukraine"
@@ -231,7 +531,7 @@
           "phone": {
             "type": "string",
             "description": "User`s phone",
-            "example": "FirstName LastName"
+            "example": "+380123456789"
           }
         }
       },
