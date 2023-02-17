@@ -46,13 +46,15 @@ const userSchema = new Schema(
       type: Array,
       default: [],
     },
+    favoriteNotices: {
+      type: Array,
+      default: [],
+    },
   },
   { timestamps: true, versionKey: false }
 );
 
-// mongoose middleware --> before save
 userSchema.pre("save", async function () {
-  //if User doesn't exist -->
   if (this.isNew) {
     this.password = await bcrypt.hash(this.password, 10); // hash password
   }
