@@ -1,6 +1,6 @@
 import createError from "http-errors";
 
-export const validateBody = (categoryName) => (req, res, next) => {
+export const validateBody = (schema) => (req, res, next) => {
   const { error } = schema.validate(req.body);
 
   if (error) {
