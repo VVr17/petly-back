@@ -14,6 +14,12 @@ export const setSuccessResponse = (code, data) => {
         data: data,
       };
 
+    case 204:
+      return {
+        status: "logout",
+        code: 204,
+      };
+
     default:
       break;
   }
