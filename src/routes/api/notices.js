@@ -1,8 +1,6 @@
 import express from "express";
 import { authMiddleware } from "../../middlewares/authMiddleware.js";
 import { errorWrapper } from "../../helpers/errorWrapper.js";
-import { validateBody } from "../../middlewares/validateBody.js";
-import { noticeSchema } from "../../schemas/noticeSchema.js";
 import {
   getByCategoryController,
   getByIdController,
@@ -29,11 +27,7 @@ router.delete(
   errorWrapper(removeFromFavoritesController)
 );
 
-router.post(
-  "/category/:categoryName",
-  validateBody(noticeSchema),
-  errorWrapper(addNoticeController)
-);
+router.post("/category/:categoryName", errorWrapper(addNoticeController));
 
 router.delete("/id/:noticeId", errorWrapper(removeNoticeController));
 
