@@ -7,6 +7,8 @@ const noticeModel = new Schema(
       type: String,
       minLength: 2,
       maxLength: 48,
+      // lowercase: true,
+      trim: true,
       required: [true, "Set title for the notice"],
     },
     photoURL: {
@@ -17,11 +19,13 @@ const noticeModel = new Schema(
       type: String,
       minLength: 2,
       maxLength: 16,
+      trim: true,
     },
     breed: {
       type: String,
       minLength: 2,
       maxLength: 24,
+      trim: true,
     },
     sex: {
       type: String,
