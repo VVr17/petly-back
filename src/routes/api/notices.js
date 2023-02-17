@@ -18,7 +18,7 @@ const router = new express.Router();
 
 // router.use(authMiddleware); // restricted routes
 
-router.get("/", errorWrapper(getUserNoticesController));
+router.get("/", authMiddleware, errorWrapper(getUserNoticesController));
 router.get("/category/:categoryName", errorWrapper(getByCategoryController));
 router.get("/id/:noticeId", errorWrapper(getByIdController));
 
@@ -35,6 +35,6 @@ router.post(
   errorWrapper(addNoticeController)
 );
 
-router.delete("/id/:noticeId", errorWrapper(removeNoticeController));
+router.delete("/id/:noticeId", authMiddleware, errorWrapper(removeNoticeController));
 
 export default router;
