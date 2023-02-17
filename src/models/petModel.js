@@ -1,5 +1,6 @@
-import mongoose, { SchemaTypes } from "mongoose";
+import mongoose from "mongoose";
 mongoose.set("strictQuery", true);
+// import { User } from "../../models/userModel.js";
 
 const { Schema, model } = mongoose;
 
@@ -9,10 +10,9 @@ const petSchema = new Schema(
       type: String,
       required: [true, "Name is required"],
     },
-    owner: {
-      type: SchemaTypes.ObjectId,
-      ref: "user",
-    },
+    owner: { 
+      type: mongoose.ObjectId,
+      ref: "User" },
     birthDate: {
       type: String,
       required: [true, "Birth date is required"],
@@ -30,7 +30,7 @@ const petSchema = new Schema(
       default: null,
     },
   },
-  { timestamps: true, versionKey: false }
+  { timestamps: true, versionKey: false },
 );
 
 export const Pet = model("Pet", petSchema);

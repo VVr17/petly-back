@@ -1,7 +1,7 @@
 import { setSuccessResponse } from "../../helpers/setResponse.js";
 import { User } from "../../models/userModel.js";
 
-export const updateUserController = async (req, res, next) => {
+export const updateUserController = async (req, res) => {
   const { userId } = req.user;
   const { name, email, birthday, phone, city } = req.body;
 

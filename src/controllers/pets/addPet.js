@@ -4,11 +4,10 @@ import { setSuccessResponse } from "../../helpers/setResponse.js";
 
 export const addPetController = async (req, res) => {
   const { name, birthDate, breed, photoURL, comments } = req.body;
-
-  //  TODO: add owner id
+  const { userId } = req.user;
 
   const savedPet = await Pet.create({
-    // ownerId: 
+    owner: userId,
     name,
     birthDate,
     breed,
