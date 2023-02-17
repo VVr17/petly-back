@@ -1,8 +1,6 @@
 import express from "express";
 import { authMiddleware } from "../../middlewares/authMiddleware.js";
 import { errorWrapper } from "../../helpers/errorWrapper.js";
-import { validateBody } from "../../middlewares/validateBody.js";
-import { noticeSchema } from "../../schemas/noticeSchema.js";
 import {
   getByCategoryController,
   getByIdController,
@@ -35,7 +33,6 @@ router.delete(
 router.post(
   "/category/:categoryName",
   authMiddleware,
-  validateBody(noticeSchema),
   errorWrapper(addNoticeController)
 );
 
