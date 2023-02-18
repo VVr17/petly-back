@@ -16,4 +16,4 @@ const newsModel = new Schema({
   },
 });
 
-export const News = mongoose.model("new", newsModel);
+export const News = mongoose.model("New", newsModel);

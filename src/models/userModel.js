@@ -60,12 +60,16 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
-    pets: {
-      type: Array,
-      default: [],
-    },
+    pets: [
+      {
+        type: Schema.ObjectId,
+        ref: "pet",
+        default: [],
+      },
+    ],
     favoriteNotices: {
-      type: Array,
+      type: Schema.ObjectId,
+      ref: "notice",
       default: [],
     },
   },

@@ -14,11 +14,7 @@ import { loginSchema } from "../../schemas/loginSchema.js";
 
 const router = new express.Router();
 
-router.post(
-  "/signup",
-  validateBody(userSchema),
-  errorWrapper(signupController)
-);
+router.post("/signup", validateBody(userSchema), errorWrapper(signupController));
 router.post("/login", validateBody(loginSchema), errorWrapper(loginController));
 router.get("/logout", authMiddleware, errorWrapper(logoutController));
 router.get("/current", authMiddleware, errorWrapper(getCurrentUserController));
