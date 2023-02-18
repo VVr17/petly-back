@@ -16,20 +16,3 @@ export const getFavoritesController = async (req, res) => {
   }
   res.json(setSuccessResponse(200, favorites));
 };
-
-
-
-
-
-
-// import {User} from "../../models/userModel.js"
-// import { setSuccessResponse } from "../../helpers/setResponse.js";
-
-
-// export const getFavoritesController = async (req, res) => {
-//    const { userId } = req.user;
-//    const UserNotice = await User.findById(userId)
-//    if (UserNotice) {
-//       res.json(setSuccessResponse(200, UserNotice.favoriteNotices));
-//    }
-// };

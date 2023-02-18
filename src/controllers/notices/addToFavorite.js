@@ -2,7 +2,7 @@ import { User } from "../../models/userModel.js"
 import { setSuccessResponse } from "../../helpers/setResponse.js";
 
 export const addToFavoriteController = async (req, res) => {
-   const { noticeId } = req.params
+   const noticeId = req.params.noticeId;
    const { userId } = req.user;
    const user = await User.findById(userId);
 
