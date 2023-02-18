@@ -63,15 +63,17 @@ const userSchema = new Schema(
     pets: [
       {
         type: Schema.ObjectId,
-        ref: "pet",
+        ref: "Pet",
         default: [],
       },
     ],
-    favoriteNotices: {
-      type: Schema.ObjectId,
-      ref: "notice",
-      default: [],
-    },
+    favoriteNotices: [
+      {
+        type: Schema.ObjectId,
+        ref: "Notice",
+        default: [],
+      },
+    ],
   },
   { timestamps: true, versionKey: false }
 );

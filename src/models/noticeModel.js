@@ -50,7 +50,7 @@ const noticeModel = new Schema(
     },
     owner: {
       type: SchemaTypes.ObjectId,
-      ref: "user",
+      ref: "User",
     },
     category: {
       type: String,

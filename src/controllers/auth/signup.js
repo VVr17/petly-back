@@ -5,6 +5,7 @@ import { User } from "../../models/userModel.js";
 
 export const signupController = async (req, res) => {
   try {
+    console.log("req", req.body);
     const createdUser = await User.create({ ...req.body });
     const token = await createAndUpdateJwt(createdUser._id);
 
