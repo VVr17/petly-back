@@ -7,49 +7,58 @@ const noticeModel = new Schema(
       type: String,
       minLength: 2,
       maxLength: 48,
+      // lowercase: true,
+      trim: true,
       required: [true, "Set title for the notice"],
     },
-    // owner: {
-    //   type: SchemaTypes.ObjectId,
-    //   ref: "user",
-    // },
-    image: {
+    photoURL: {
       type: String,
     },
+
     name: {
       type: String,
       minLength: 2,
       maxLength: 16,
+      trim: true,
     },
     breed: {
       type: String,
       minLength: 2,
       maxLength: 24,
+      trim: true,
     },
     sex: {
       type: String,
       enum: ["male", "female"],
+      required: true,
     },
     birthDate: {
       type: Date,
     },
     location: {
       type: String,
+      required: true,
     },
     comments: {
       type: String,
       minLength: 8,
       maxLength: 120,
-      required: true,
-    },
-    category: {
-      type: String,
-      enum: ["sell", "lost/found", "in good hands"],
-      required: true,
     },
     price: {
       type: Number,
       min: 1,
+    },
+    owner: {
+      type: SchemaTypes.ObjectId,
+      ref: "user",
+    },
+    category: {
+      type: String,
+      enum: ["sell", "lost-found", "in-good-hands"],
+    },
+    favorite: {
+      type: Boolean,
+      default: false,
     },
   },
   {

@@ -1,8 +1,6 @@
 import express from "express";
 import { authMiddleware } from "../../middlewares/authMiddleware.js";
 import { errorWrapper } from "../../helpers/errorWrapper.js";
-import { validateBody } from "../../middlewares/validateBody.js";
-import { noticeSchema } from "../../schemas/noticeSchema.js";
 import {
   getByCategoryController,
   getByIdController,
@@ -12,29 +10,39 @@ import {
   addNoticeController,
   removeNoticeController,
   getUserNoticesController,
+  getNotices,
 } from "../../controllers/notices/index.js";
+import { validateNoticeBody } from "../../middlewares/validateNoticeBody.js";
 
 const router = new express.Router();
 
-router.use(authMiddleware); // restricted routes
+router.get("/", errorWrapper(getNotices));
+router.get("/user", authMiddleware, errorWrapper(getUserNoticesController));
 
-router.get("/", errorWrapper(getUserNoticesController));
 router.get("/category/:categoryName", errorWrapper(getByCategoryController));
-router.get("/id/:noticeId", errorWrapper(getByIdController));
-
-router.post("/favorites/:noticeId", errorWrapper(addToFavoriteController));
-router.get("/favorites", errorWrapper(getFavoritesController));
-router.delete(
-  "/favorites/:noticeId",
-  errorWrapper(removeFromFavoritesController)
-);
-
 router.post(
   "/category/:categoryName",
-  validateBody(noticeSchema),
+  [authMiddleware, validateNoticeBody],
   errorWrapper(addNoticeController)
 );
 
-router.delete("/id/:noticeId", errorWrapper(removeNoticeController));
+router.get("/:noticeId", errorWrapper(getByIdController));
+router.delete(
+  "/:noticeId",
+  authMiddleware,
+  errorWrapper(removeNoticeController)
+);
+
+router.post(
+  "/favorites/:noticeId",
+  authMiddleware,
+  errorWrapper(addToFavoriteController)
+);
+router.get("/favorites", authMiddleware, errorWrapper(getFavoritesController));
+router.delete(
+  "/favorites/:noticeId",
+  authMiddleware,
+  errorWrapper(removeFromFavoritesController)
+);
 
 export default router;
