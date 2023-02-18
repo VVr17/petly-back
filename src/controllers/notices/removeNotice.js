@@ -1,13 +1,22 @@
 import { setSuccessResponse } from "../../helpers/setResponse.js";
 import { Notice } from "../../models/noticeModel.js";
-// TODO: user can remove only their own notice --> should get req.user.userId
+import NotFound from "http-errors";
+import BadRequest from "http-errors";
+
 export const removeNoticeController = async (req, res) => {
   const noticeId = req.params.noticeId;
-  const result = await Notice.findByIdAndRemove(noticeId);
+  const userId = req.user.userId;
 
-  if (!result) {
-    throw new NotFound(`Notice whith id=${contactId} not found `);
+  const data = await Notice.findById(noticeId);
+
+  if (!data) {
+    throw NotFound(`Notice whith id=${noticeId} not found`);
   }
+  if (!userId.match(data.owner)) {
+    throw BadRequest("This user is not the owner of this notice");
+  }
+
+  await Notice.findByIdAndRemove(noticeId);
 
   res.json(setSuccessResponse(200, `Notice whith id=${noticeId} deleted`));
 };
