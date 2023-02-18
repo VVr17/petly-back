@@ -14,7 +14,7 @@ export const getFavoritesController = async (req, res) => {
       const error = new Error();
       throw error(404, 'You have no any favorite notices');    
   }
-  res.status(200).json(favorites);
+  res.json(setSuccessResponse(200, favorites));
 };
 
 
