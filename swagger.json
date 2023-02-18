@@ -276,7 +276,7 @@
         }
       }
     },
-    "/api/notices/id/{noticeId}": {
+    "/api/notices/{noticeId}": {
       "parameters": [
         {
           "name": "noticeId",

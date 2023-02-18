@@ -12,6 +12,7 @@ import {
   getUserNoticesController,
   getNotices,
 } from "../../controllers/notices/index.js";
+import { validateNoticeBody } from "../../middlewares/validateNoticeBody.js";
 
 const router = new express.Router();
 
@@ -21,13 +22,13 @@ router.get("/user", authMiddleware, errorWrapper(getUserNoticesController));
 router.get("/category/:categoryName", errorWrapper(getByCategoryController));
 router.post(
   "/category/:categoryName",
-  authMiddleware,
+  [authMiddleware, validateNoticeBody],
   errorWrapper(addNoticeController)
 );
 
-router.get("/id/:noticeId", errorWrapper(getByIdController));
+router.get("/:noticeId", errorWrapper(getByIdController));
 router.delete(
-  "/id/:noticeId",
+  "/:noticeId",
   authMiddleware,
   errorWrapper(removeNoticeController)
 );
