@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/VVr17/pet-support-back#readme",
   "dependencies": {
+    "@joi/date": "^2.1.0",
     "bcrypt": "^5.1.0",
     "cors": "2.8.5",
     "cross-env": "7.0.3",
