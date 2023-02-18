@@ -123,10 +123,10 @@
         "requestBody": {},
         "responses": {
           "200": {
-            "description": "Current User",
+            "description": "Current user",
             "content": {
               "application/json": {
-                "sсhema": {
+                "schema": {
                   "$ref": "#/components/schemas/User"
                 }
               }
@@ -134,6 +134,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not found"
           },
           "500": {
             "description": "Internal server error"
@@ -145,13 +148,23 @@
         "summary": "Update current user",
         "parameters": [],
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
+        "requestBody": {
+          "description": "User update",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "Current User has been updated",
+            "description": "Current user has been updated successfully",
             "content": {
               "application/json": {
-                "sсhema": {
+                "schema": {
                   "$ref": "#/components/schemas/User"
                 }
               }
@@ -197,11 +210,41 @@
       "get": {
         "tags": ["Notices"],
         "summary": "Get notices by key words",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The number of page to set results",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The numbers of items to return",
+            "type": "integer"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": true,
+            "description": "Key words to find notices",
+            "type": "string"
+          }
+        ],
         "requestBody": {},
         "responses": {
           "200": {
-            "description": "Get notices successfully"
+            "description": "Notices has been found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notices"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
           },
           "500": {
             "description": "Internal server error"
@@ -218,7 +261,14 @@
         "requestBody": {},
         "responses": {
           "200": {
-            "description": "Get authorized user notices successfully"
+            "description": "Notices has been found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notices"
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
@@ -242,10 +292,31 @@
       "get": {
         "tags": ["Notices"],
         "summary": "Get authorized user notices ",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The number of page to set results",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The numbers of items to return",
+            "type": "integer"
+          }
+        ],
         "requestBody": {},
         "responses": {
           "200": {
-            "description": "Get notices by category successfully"
+            "description": "Notices has been found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notices"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request"
@@ -262,7 +333,14 @@
         "requestBody": {},
         "responses": {
           "200": {
-            "description": "Notice has been posted successfully"
+            "description": "Notice has been added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notice"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request"
@@ -293,7 +371,14 @@
         "requestBody": {},
         "responses": {
           "200": {
-            "description": "Notices by id has been found successfully"
+            "description": "Notices by id has been found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notice"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request"
@@ -341,8 +426,15 @@
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {
-          "200": {
-            "description": "Notice has been added successfully"
+          "201": {
+            "description": "Notice has been added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notice"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request"
@@ -384,7 +476,14 @@
         "requestBody": {},
         "responses": {
           "200": {
-            "description": "Favorite notices has been found successfully"
+            "description": "Favorite notices has been found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notices"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request"
@@ -437,8 +536,15 @@
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {
-          "200": {
-            "description": "Pets has been added successfully"
+          "201": {
+            "description": "Pets has been added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pet"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request"
@@ -503,6 +609,11 @@
             "description": "User`s name",
             "example": "FirstName LastName"
           },
+          "birthday": {
+            "type": "string",
+            "description": "User`s birthday",
+            "example": "12.06.1990"
+          },
           "city": {
             "type": "string",
             "description": "User`s city, region",
@@ -512,6 +623,16 @@
             "type": "string",
             "description": "User`s phone",
             "example": "+380123456789"
+          },
+          "pets": {
+            "type": "array",
+            "description": "User's pets",
+            "example": "[pets]"
+          },
+          "favoriteNotices": {
+            "type": "array",
+            "description": "User's favorite notices",
+            "example": "[notices]"
           }
         }
       },
@@ -580,6 +701,148 @@
           }
         }
       },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "example@mail.com"
+          },
+          "name": {
+            "type": "string",
+            "description": "User`s name",
+            "example": "FirstName LastName"
+          },
+          "city": {
+            "type": "string",
+            "description": "User`s city, region",
+            "example": "Kyiv, Ukraine"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User`s phone",
+            "example": "+380123456789"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User`s birthday",
+            "example": "12.06.1990"
+          }
+        }
+      },
+      "Notice": {
+        "required": ["email", "password"],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "title": {
+            "type": "string",
+            "description": "notice title",
+            "example": "Dog for sell"
+          },
+          "photoURL": {
+            "type": "string",
+            "description": "URL photo",
+            "example": "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_960_720.jpg"
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Bulbasavr"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "Husky"
+          },
+          "sex": {
+            "type": "string",
+            "description": "Pet's sex ['male, 'female]",
+            "example": "Male"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Pet's birthday",
+            "example": "12.06.2020"
+          },
+          "location": {
+            "type": "string",
+            "description": "City, region",
+            "example": "Kyiv, Ukraine"
+          },
+          "comments": {
+            "type": "string",
+            "description": "City, region",
+            "example": "This is a beautiful dog"
+          },
+          "price": {
+            "type": "string",
+            "description": "Price for sell",
+            "example": "15"
+          },
+          "owner": {
+            "type": "string",
+            "description": "User's id",
+            "example": "63f0c4c6c11078905fe1a78d",
+            "format": "ObjectId"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category ['sell', 'lost-found, 'in-good-hands]",
+            "example": "63f0c4c6c11078905fe1a78d"
+          }
+        }
+      },
+      "Notices": {
+        "type": "array",
+        "$ref": "#/components/schemas/Notice"
+      },
+      "Pet": {
+        "required": ["email", "password"],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "format": "ObjectId",
+            "uniqueItems": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Bulbasavr"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "Husky"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Pet's birthday",
+            "example": "12.06.2020"
+          },
+          "photoURL": {
+            "type": "string",
+            "description": "URL photo",
+            "example": "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_960_720.jpg"
+          },
+          "comments": {
+            "type": "string",
+            "description": "City, region",
+            "example": "This is a beautiful dog"
+          },
+          "owner": {
+            "type": "string",
+            "description": "User's id",
+            "example": "63f0c4c6c11078905fe1a78d",
+            "format": "ObjectId"
+          }
+        }
+      },
+      "Pets": { "type": "array", "$ref": "#/components/schemas/Pet" },
       "MessageResponse": {
         "type": "object",
         "properties": {

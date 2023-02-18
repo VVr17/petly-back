@@ -14,7 +14,6 @@ const noticeModel = new Schema(
       type: String,
       required: [true, "PhotoURL is required"],
     },
-
     name: {
       type: String,
       minLength: 2,
@@ -59,10 +58,6 @@ const noticeModel = new Schema(
     category: {
       type: String,
       enum: ["sell", "lost-found", "in-good-hands"],
-    },
-    favorite: {
-      type: Boolean,
-      default: false,
     },
   },
   {
