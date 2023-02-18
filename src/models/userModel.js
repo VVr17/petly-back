@@ -63,13 +63,13 @@ const userSchema = new Schema(
     pets: [
       {
         type: Schema.ObjectId,
-        ref: "Pet",
+        ref: "pet",
         default: [],
       },
     ],
     favoriteNotices: {
       type: Schema.ObjectId,
-      ref: 'notice',
+      ref: "notice",
       default: [],
     },
   },
