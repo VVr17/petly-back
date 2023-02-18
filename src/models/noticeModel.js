@@ -7,12 +7,12 @@ const noticeModel = new Schema(
       type: String,
       minLength: 2,
       maxLength: 48,
-      // lowercase: true,
       trim: true,
-      required: [true, "Set title for the notice"],
+      required: [true, "Title is required"],
     },
     photoURL: {
       type: String,
+      required: [true, "PhotoURL is required"],
     },
 
     name: {
@@ -20,29 +20,33 @@ const noticeModel = new Schema(
       minLength: 2,
       maxLength: 16,
       trim: true,
+      required: [true, "Name is required"],
     },
     breed: {
       type: String,
       minLength: 2,
       maxLength: 24,
       trim: true,
+      required: [true, "Breed is required"],
     },
     sex: {
       type: String,
       enum: ["male", "female"],
-      required: true,
+      required: [true, "Sex is required"],
     },
     birthDate: {
-      type: Date,
+      type: String,
+      required: [true, "BirthDate is required"],
     },
     location: {
       type: String,
-      required: true,
+      required: [true, "Location is required"],
     },
     comments: {
       type: String,
       minLength: 8,
       maxLength: 120,
+      required: [true, "Comment is required"],
     },
     price: {
       type: Number,
