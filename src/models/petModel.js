@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 mongoose.set("strictQuery", true);
-// import { User } from "../../models/userModel.js";
 
 const { Schema, model } = mongoose;
 
@@ -12,7 +11,8 @@ const petSchema = new Schema(
     },
     owner: { 
       type: mongoose.ObjectId,
-      ref: "User" },
+      ref: "User" 
+    },
     birthDate: {
       type: String,
       required: [true, "Birth date is required"],
@@ -22,6 +22,9 @@ const petSchema = new Schema(
       minLength: 2,
       maxLength: 24,
       required: [true, "Breed is required"],
+    },
+    photoURL: {
+      type: String,
     },
     comments: {
       type: String,

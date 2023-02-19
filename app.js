@@ -9,11 +9,11 @@ import {
   newsRouter,
   servicesRouter,
   petsRouter,
+  imagesRouter,
 } from "./src/routes/index.js";
 
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
-
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
@@ -24,6 +24,7 @@ app.use("/api/notices", noticesRouter);
 app.use("/api/news", newsRouter);
 app.use("/api/services", servicesRouter);
 app.use("/api/pets", petsRouter);
+app.use("/api/files", imagesRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
