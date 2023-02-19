@@ -16,7 +16,7 @@ const userSchema = new Schema(
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
         "Please enter a valid email address",
       ],
-      minLength: 10,
+      minLength: 12,
       maxLength: 63,
     },
     name: {
