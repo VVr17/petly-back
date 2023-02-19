@@ -1,21 +1,29 @@
-import { User } from "../../models/userModel.js"
+import { User } from "../../models/userModel.js";
 import { setSuccessResponse } from "../../helpers/setResponse.js";
+import createError from "http-errors";
 
 export const removeFromFavoritesController = async (req, res) => {
-   const { noticeId } = req.params
-   const { userId } = req.user;
-   const user = await User.findById(userId);
-   const index = user.favoriteNotices.indexOf(noticeId);
+  const { noticeId } = req.params;
+  const { userId } = req.user;
+  const user = await User.findById(userId);
+  const index = user.favoriteNotices.indexOf(noticeId);
 
-   if (index === -1) {
-      return res.json({
-         code: 400,
-         message: "Favorite is not found",
-      });
-   }
+  if (index === -1) {
+    throw new createError(400, `Notice with ${noticeId} has not been found`);
+  }
 
-   user.favoriteNotices.splice(index, 1);
-   await user.save();
+  user.favoriteNotices.splice(index, 1);
 
-   res.json(setSuccessResponse(200));
+  await User.findByIdAndUpdate(
+    { _id: userId },
+    { favoriteNotices: user.favoriteNotices },
+    { new: true }
+  );
+
+  res.json(
+    setSuccessResponse(
+      200,
+      `Notice with id=${noticeId} has been removed from favorites`
+    )
+  );
 };

@@ -35,6 +35,10 @@
     {
       "name": "Pets",
       "description": "API for pets in the system"
+    },
+    {
+      "name": "Files",
+      "description": "API for files in the system"
     }
   ],
 
@@ -330,7 +334,17 @@
         "tags": ["Notices"],
         "summary": "Post notice to chosen category by authorized user",
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
+        "requestBody": {
+          "description": "Notice object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNoticeRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Notice has been added successfully",
@@ -354,7 +368,7 @@
         }
       }
     },
-    "/api/notices/{noticeId}": {
+    "/api/notices/id/{noticeId}": {
       "parameters": [
         {
           "name": "noticeId",
@@ -362,7 +376,8 @@
           "required": true,
           "description": "Notice Id to be found",
           "type": "string",
-          "format": "ObjectId"
+          "format": "ObjectId",
+          "example": "63f1feee746e0ba167d026f3"
         }
       ],
       "get": {
@@ -653,7 +668,7 @@
           "password": {
             "type": "string",
             "description": "User`s password",
-            "example": "password"
+            "example": "Password1"
           },
           "name": {
             "type": "string",
@@ -685,7 +700,7 @@
           "password": {
             "type": "string",
             "description": "User`s password",
-            "example": "password"
+            "example": "Password1"
           }
         }
       },
@@ -762,12 +777,12 @@
           "sex": {
             "type": "string",
             "description": "Pet's sex ['male, 'female]",
-            "example": "Male"
+            "example": "male"
           },
           "birthDate": {
             "type": "string",
             "description": "Pet's birthday",
-            "example": "12.06.2020"
+            "example": "12-06-2020"
           },
           "location": {
             "type": "string",
@@ -801,6 +816,57 @@
         "type": "array",
         "$ref": "#/components/schemas/Notice"
       },
+      "AddNoticeRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "notice title",
+            "example": "Dog for sell"
+          },
+          "photoURL": {
+            "type": "string",
+            "description": "URL photo",
+            "example": "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_960_720.jpg"
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Bulbasavr"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "Husky"
+          },
+          "sex": {
+            "type": "string",
+            "description": "Pet's sex ['male, 'female]",
+            "example": "male"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Pet's birthday",
+            "example": "12-06-2020"
+          },
+          "location": {
+            "type": "string",
+            "description": "City, region",
+            "example": "Kyiv, Ukraine"
+          },
+          "comments": {
+            "type": "string",
+            "description": "City, region",
+            "example": "This is a beautiful dog"
+          },
+          "price": {
+            "type": "string",
+            "description": "Price for sell",
+            "example": "15"
+          }
+        }
+      },
       "Pet": {
         "required": ["email", "password"],
         "properties": {
@@ -822,7 +888,7 @@
           "birthDate": {
             "type": "string",
             "description": "Pet's birthday",
-            "example": "12.06.2020"
+            "example": "12-06-2020"
           },
           "photoURL": {
             "type": "string",
