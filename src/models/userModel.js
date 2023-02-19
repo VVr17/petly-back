@@ -38,10 +38,7 @@ const userSchema = new Schema(
     phone: {
       type: String,
       required: [true, "Phone is required"],
-      match: [
-        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-        "Please enter a valid phone",
-      ],
+      match: [/^\+380\d{9}$/, "Please enter a valid phone"],
       minLength: 13,
       maxLength: 13,
     },

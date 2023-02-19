@@ -40,6 +40,10 @@ const noticeModel = new Schema(
     location: {
       type: String,
       required: [true, "Location is required"],
+      match: [
+        /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
+        "Should be at least two words separated by string",
+      ],
     },
     comments: {
       type: String,

@@ -7,6 +7,8 @@ const petSchema = new Schema(
   {
     name: {
       type: String,
+      minLength: 2,
+      maxLength: 16,
       required: [true, "Name is required"],
     },
     owner: {
