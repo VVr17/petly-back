@@ -12,7 +12,7 @@ export const addToFavoriteController = async (req, res) => {
   if (checkNotice) {
     throw new createError(
       409,
-      `Notice with ${noticeId} has been already added`
+      `Notice with id: ${noticeId} has been already added`
     );
   }
 
