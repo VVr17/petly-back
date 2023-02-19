@@ -1,18 +1,16 @@
 import { User } from "../../models/userModel.js";
-import { Notice } from "../../models/noticeModel.js";
 import { setSuccessResponse } from "../../helpers/setResponse.js";
+import createError from "http-errors";
+
 
 export const getFavoritesController = async (req, res) => {
-  const { userId } = req.user;
-  const user = await User.findById(userId);
-  const idArray = user.favoriteNotices.map((favorite) => {
-    return favorite.toString();
-  });
-  const favorites = await Notice.find({ _id: idArray });
+   const { userId } = req.user;
 
-  if (!favorites) {
-    const error = new Error();
-    throw error(404, "You have no any favorite notices");
+  const userDataWithNotices = await User.findById(userId).populate("favoriteNotices");
+
+  if (userDataWithNotices.favoriteNotices.length === 0) {
+    throw new createError(404, `Not find any notices!`);
   }
-  res.json(setSuccessResponse(200, favorites));
-};
+  
+  return res.json(setSuccessResponse(200, userDataWithNotices.favoriteNotices));
+}
