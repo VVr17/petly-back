@@ -9,9 +9,9 @@ const petSchema = new Schema(
       type: String,
       required: [true, "Name is required"],
     },
-    owner: { 
+    owner: {
       type: mongoose.ObjectId,
-      ref: "User" 
+      ref: "User",
     },
     birthDate: {
       type: String,
@@ -32,8 +32,12 @@ const petSchema = new Schema(
       maxLength: 120,
       default: null,
     },
+    photoURL: {
+      type: String,
+      default: null,
+    },
   },
-  { timestamps: true, versionKey: false },
+  { timestamps: true, versionKey: false }
 );
 
 export const Pet = model("Pet", petSchema);

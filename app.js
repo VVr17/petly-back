@@ -29,7 +29,7 @@ app.use("/api/files", imagesRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((_, res) => {
-  res.status(404).json({ message: "Use api on route not found" });
+  res.status(404).json({ message: "No api for entered route found" });
 });
 
 app.use((err, req, res, next) => {

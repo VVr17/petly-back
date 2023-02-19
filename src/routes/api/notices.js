@@ -26,9 +26,9 @@ router.post(
   errorWrapper(addNoticeController)
 );
 
-router.get("/:noticeId", errorWrapper(getByIdController));
+router.get("/id/:noticeId", errorWrapper(getByIdController));
 router.delete(
-  "/:noticeId",
+  "/id/:noticeId",
   authMiddleware,
   errorWrapper(removeNoticeController)
 );
