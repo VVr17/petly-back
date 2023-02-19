@@ -5,15 +5,18 @@ export const userSchema = Joi.object({
     .email({
       minDomainSegments: 2,
     })
-    .regex(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+    .regex(
+      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,10})+)$/,
+      "Please enter a valid email address"
+    )
     .required()
-    .min(10)
+    .min(12)
     .max(63),
   password: Joi.string()
     .min(7)
     .max(32)
     .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
       "minimum seven characters, at least one uppercase letter, one lowercase letter and one number"
     )
     .required(),
@@ -27,10 +30,7 @@ export const userSchema = Joi.object({
   phone: Joi.string()
     .min(13)
     .max(13)
-    .regex(
-      /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-      "match +380123456789"
-    )
+    .regex(/^\+380\d{9}$/, "match +380123456789")
     .required(),
   name: Joi.string().min(4).required(),
 });

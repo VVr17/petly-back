@@ -13,7 +13,7 @@ const userSchema = new Schema(
       trim: true,
       lowercase: true,
       match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,10})+)$/,
         "Please enter a valid email address",
       ],
       minLength: 12,
@@ -47,10 +47,9 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      minLength: [6, "Password should be at least 6 characters"],
       required: [true, "Password is required"],
       match: [
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
         "Please enter a valid password",
       ],
       minLength: 7,
