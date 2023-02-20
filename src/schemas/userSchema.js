@@ -37,7 +37,7 @@ export const userSchema = Joi.object({
   name: Joi.string()
     .min(3)
     .max(12)
-    .regex(/^[a-zA-Z]+$/, "Only letters can be accepted")
+    .regex(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Only letters can be accepted")
     .required(),
   birthday: Joi.date().format("DD.MM.YYYY"),
 });
