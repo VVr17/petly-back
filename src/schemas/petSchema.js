@@ -11,7 +11,7 @@ export const petSchema = Joi.object({
   birthDate: Joi.date().less(Date.now()).format("DD.MM.YYYY").required(),
   breed: Joi.string()
     .min(2)
-    .max(16)
+    .max(24)
     .regex(/^[a-zA-Z]+$/, "Only letters can be accepted")
     .required(),
   comments: Joi.string().min(8).max(120),

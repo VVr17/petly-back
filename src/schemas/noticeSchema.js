@@ -39,7 +39,7 @@ export const noticeSellSchema = Joi.object({
     .max(24)
     .regex(/^[a-zA-Z]+$/, "Only letters can be accepted")
     .required(),
-  sex: Joi.string().required(),
+  sex: Joi.string().valid("male", "female").required(),
   birthDate: Joi.date().less(Date.now()).format("DD.MM.YYYY").required(),
   location: Joi.string()
     .regex(
