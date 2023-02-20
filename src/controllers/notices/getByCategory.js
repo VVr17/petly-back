@@ -10,7 +10,7 @@ export const getByCategoryController = async (req, res) => {
   const data = await Notice.find({ category: categoryName }, "", {
     skip,
     limit: Number(limit),
-  });
+  }).sort({ createdAt: "descending" });
   if (!data.length) {
     throw new createError(404, "Notices not found");
   }
