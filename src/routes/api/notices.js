@@ -19,13 +19,6 @@ const router = new express.Router();
 router.get("/", errorWrapper(getNotices));
 router.get("/user", authMiddleware, errorWrapper(getUserNoticesController));
 
-router.get("/category/:categoryName", errorWrapper(getByCategoryController));
-router.post(
-  "/category/:categoryName",
-  [authMiddleware, validateNoticeBody],
-  errorWrapper(addNoticeController)
-);
-
 router.get("/id/:noticeId", errorWrapper(getByIdController));
 router.delete(
   "/id/:noticeId",
@@ -43,6 +36,13 @@ router.delete(
   "/favorites/:noticeId",
   authMiddleware,
   errorWrapper(removeFromFavoritesController)
+);
+
+router.get("/category/:categoryName", errorWrapper(getByCategoryController));
+router.post(
+  "/category/:categoryName",
+  [authMiddleware, validateNoticeBody],
+  errorWrapper(addNoticeController)
 );
 
 export default router;
