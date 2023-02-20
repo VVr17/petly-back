@@ -22,6 +22,9 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: [true, "Name is required"],
+      match: [/^[a-zA-Z]+$/, "Only letters accepted"],
+      minLength: 3,
+      maxLength: 12,
     },
     birthday: {
       type: String,
@@ -31,7 +34,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, "City/region is required"],
       match: [
-        /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
+        /^[a-zA-Z]+(?:-[a-zA-Z]+)*,\s*[a-zA-Z\s]+$/,
         "Should be at least two words separated by string",
       ],
     },

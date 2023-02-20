@@ -1,4 +1,6 @@
-import Joi from "joi";
+import BaseJoi from "joi";
+import JoiDate from "@joi/date";
+const Joi = BaseJoi.extend(JoiDate);
 
 export const userSchema = Joi.object({
   email: Joi.string()
@@ -23,8 +25,8 @@ export const userSchema = Joi.object({
   city: Joi.string()
     .min(4)
     .regex(
-      /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
-      "at least two words separated by string"
+      /^[a-zA-Z]+(?:-[a-zA-Z]+)*,\s*[a-zA-Z\s]+$/,
+      "Should be at least two words separated by string"
     )
     .required(),
   phone: Joi.string()
@@ -32,5 +34,10 @@ export const userSchema = Joi.object({
     .max(13)
     .regex(/^\+380\d{9}$/, "match +380123456789")
     .required(),
-  name: Joi.string().min(4).required(),
+  name: Joi.string()
+    .min(3)
+    .max(12)
+    .regex(/^[a-zA-Z]+$/, "Only letters can be accepted")
+    .required(),
+  birthday: Joi.date().format("DD.MM.YYYY").required(),
 });
