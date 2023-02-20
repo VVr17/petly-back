@@ -486,7 +486,7 @@
     "/api/notices/favorites": {
       "get": {
         "tags": ["Notices"],
-        "summary": "Het user's favorite notices",
+        "summary": "Get user's favorite notices",
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {
@@ -549,7 +549,17 @@
         "tags": ["Pets"],
         "summary": "Add pet by authorized user",
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
+        "requestBody": {
+          "description": "Notice object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPetRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "Pets has been added successfully",
@@ -748,7 +758,17 @@
         }
       },
       "Notice": {
-        "required": ["email", "password"],
+        "required": [
+          "title",
+          "photoURL",
+          "name",
+          "sex",
+          "birthDate",
+          "breed",
+          "location",
+          "comments",
+          "category"
+        ],
         "properties": {
           "_id": {
             "type": "string",
@@ -818,7 +838,17 @@
       },
       "AddNoticeRequest": {
         "type": "object",
-        "required": ["email", "password"],
+        "required": [
+          "title",
+          "photoUrl",
+          "name",
+          "sex",
+          "birthDate",
+          "breed",
+          "location",
+          "comments",
+          "category"
+        ],
         "properties": {
           "title": {
             "type": "string",
@@ -868,7 +898,7 @@
         }
       },
       "Pet": {
-        "required": ["email", "password"],
+        "required": ["photoURL", "name", "birthDate", "breed", "comments"],
         "properties": {
           "_id": {
             "type": "string",
@@ -909,6 +939,47 @@
         }
       },
       "Pets": { "type": "array", "$ref": "#/components/schemas/Pet" },
+      "AddPetRequest": {
+        "type": "object",
+        "required": [
+          "title",
+          "photoUrl",
+          "name",
+          "sex",
+          "birthDate",
+          "breed",
+          "location",
+          "comments",
+          "category"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Bulbasavr"
+          },
+          "breed": {
+            "type": "string",
+            "description": "Pet's breed",
+            "example": "Husky"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "Pet's birthday",
+            "example": "12-06-2020"
+          },
+          "photoURL": {
+            "type": "string",
+            "description": "URL photo",
+            "example": "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_960_720.jpg"
+          },
+          "comments": {
+            "type": "string",
+            "description": "City, region",
+            "example": "This is a beautiful dog"
+          }
+        }
+      },
       "MessageResponse": {
         "type": "object",
         "properties": {
