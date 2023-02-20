@@ -9,6 +9,7 @@ const petSchema = new Schema(
       type: String,
       minLength: 2,
       maxLength: 16,
+      match: [/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Only letters can be accepted"],
       required: [true, "Name is required"],
     },
     owner: {
@@ -24,9 +25,6 @@ const petSchema = new Schema(
       minLength: 2,
       maxLength: 24,
       required: [true, "Breed is required"],
-    },
-    photoURL: {
-      type: String,
     },
     comments: {
       type: String,

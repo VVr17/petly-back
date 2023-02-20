@@ -8,7 +8,7 @@ export const noticeSchema = Joi.object({
   name: Joi.string()
     .min(2)
     .max(16)
-    .regex(/^[a-zA-Z]+$/, "Only letters can be accepted")
+    .regex(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Only letters can be accepted")
     .required(),
   breed: Joi.string()
     .min(2)
@@ -16,7 +16,7 @@ export const noticeSchema = Joi.object({
     .regex(/^[a-zA-Z]+$/, "Only letters can be accepted")
     .required(),
   sex: Joi.string().required(),
-  birthDate: Joi.date().format("DD.MM.YYYY").required(),
+  birthDate: Joi.date().less(Date.now()).format("DD.MM.YYYY").required(),
   location: Joi.string()
     .regex(
       /^[a-zA-Z]+(?:-[a-zA-Z]+)*,\s*[a-zA-Z\s]+$/,

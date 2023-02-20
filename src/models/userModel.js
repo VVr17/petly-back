@@ -22,7 +22,7 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: [true, "Name is required"],
-      match: [/^[a-zA-Z]+$/, "Only letters accepted"],
+      match: [/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Only letters can be accepted"],
       minLength: 3,
       maxLength: 12,
     },

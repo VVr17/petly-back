@@ -19,6 +19,7 @@ const noticeModel = new Schema(
       minLength: 2,
       maxLength: 16,
       trim: true,
+      match: [/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Only letters can be accepted"],
       required: [true, "Name is required"],
     },
     breed: {
