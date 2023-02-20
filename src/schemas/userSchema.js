@@ -25,7 +25,7 @@ export const userSchema = Joi.object({
   city: Joi.string()
     .min(4)
     .regex(
-      /^[a-zA-Z]+(?:-[a-zA-Z]+)*,\s*[a-zA-Z\s]+$/,
+      /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
       "Should be at least two words separated by string"
     )
     .required(),
@@ -37,7 +37,10 @@ export const userSchema = Joi.object({
   name: Joi.string()
     .min(3)
     .max(12)
-    .regex(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Only letters can be accepted")
+    .regex(
+      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      "Only letters can be accepted"
+    )
     .required(),
   birthday: Joi.date().less(Date.now()).format("DD.MM.YYYY"),
   photoURL: Joi.string().uri(),
