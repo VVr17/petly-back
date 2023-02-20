@@ -8,7 +8,7 @@ export const petSchema = Joi.object({
     .max(16)
     .regex(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Only letters can be accepted")
     .required(),
-  birthDate: Joi.date().format("DD.MM.YYYY").required(),
+  birthDate: Joi.date().less(Date.now()).format("DD.MM.YYYY").required(),
   breed: Joi.string()
     .min(2)
     .max(16)

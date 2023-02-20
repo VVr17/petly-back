@@ -39,5 +39,6 @@ export const userSchema = Joi.object({
     .max(12)
     .regex(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Only letters can be accepted")
     .required(),
-  birthday: Joi.date().format("DD.MM.YYYY"),
+  birthday: Joi.date().less(Date.now()).format("DD.MM.YYYY"),
+  photoURL: Joi.string().uri(),
 });
