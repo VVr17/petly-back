@@ -8,7 +8,7 @@ export const noticeSchema = Joi.object({
   name: Joi.string().min(2).max(16).required(),
   breed: Joi.string().min(2).max(24).required(),
   sex: Joi.string().required(),
-  birthDate: Joi.date().format("DD-MM-YYYY").required(),
+  birthDate: Joi.date().format("DD.MM.YYYY").required(),
   location: Joi.string()
     .regex(
       /^\s*(?:\w+\s*,\s*){1,}(?:\w+\s*)$/,
