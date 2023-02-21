@@ -20,6 +20,6 @@ export const petSchema = Joi.object({
       "Only letters can be accepted"
     )
     .required(),
-  comments: Joi.string().min(8).max(120),
+  comments: Joi.string().min(8).max(200),
   photoURL: Joi.string().uri().required(),
 });

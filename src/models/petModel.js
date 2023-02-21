@@ -32,7 +32,7 @@ const petSchema = new Schema(
     comments: {
       type: String,
       minLength: 8,
-      maxLength: 120,
+      maxLength: 200,
       default: null,
     },
     photoURL: {

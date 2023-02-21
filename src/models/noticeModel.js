@@ -56,7 +56,7 @@ const noticeModel = new Schema(
     comments: {
       type: String,
       minLength: 8,
-      maxLength: 120,
+      maxLength: 200,
       required: [true, "Comment is required"],
     },
     price: {

@@ -59,7 +59,7 @@ export const noticeSellSchema = Joi.object({
       "Should be at least two words separated by string"
     )
     .required(),
-  comments: Joi.string().min(8).max(120).required(),
+  comments: Joi.string().min(8).max(200).required(),
   price: Joi.number().greater(0).required().required(),
 });
 
