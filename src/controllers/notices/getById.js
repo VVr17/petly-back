@@ -5,7 +5,7 @@ import { setSuccessResponse } from "../../helpers/setResponse.js";
 export const getByIdController = async (req, res) => {
   const { noticeId } = req.params;
 
-  const data = await Notice.findById(noticeId);
+  const data = await Notice.findById(noticeId).populate("owner", "email phone");
   if (!data) {
     throw new createError(404, `The notice with ID ${noticeId} does not exist`);
   }

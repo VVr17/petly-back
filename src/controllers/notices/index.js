@@ -6,7 +6,6 @@ import { removeFromFavoritesController } from "./removeFromFavorite.js";
 import { addNoticeController } from "./addNotice.js";
 import { removeNoticeController } from "./removeNotice.js";
 import { getUserNoticesController } from "./getUserNotices.js";
-import { getNotices } from "./getNotices.js";
 
 export {
   getByCategoryController,
@@ -17,5 +16,4 @@ export {
   addNoticeController,
   removeNoticeController,
   getUserNoticesController,
-  getNotices,
 };

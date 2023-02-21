@@ -10,13 +10,11 @@ import {
   addNoticeController,
   removeNoticeController,
   getUserNoticesController,
-  getNotices,
 } from "../../controllers/notices/index.js";
 import { validateNoticeBody } from "../../middlewares/validateNoticeBody.js";
 
 const router = new express.Router();
 
-router.get("/", errorWrapper(getNotices));
 router.get("/user", authMiddleware, errorWrapper(getUserNoticesController));
 
 router.get("/id/:noticeId", errorWrapper(getByIdController));
