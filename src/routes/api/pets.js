@@ -4,7 +4,6 @@ import { errorWrapper } from "../../helpers/errorWrapper.js";
 import { validateBody } from "../../middlewares/validateBody.js";
 import {
   addPetController,
-  getPetsController,
   deletePetController,
 } from "../../controllers/pets/index.js";
 import { petSchema } from "../../schemas/petSchema.js";
