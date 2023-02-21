@@ -14,8 +14,18 @@ export const updateUserController = async (req, res) => {
       phone,
       city,
     },
-    { new: true }
+    {
+      new: true,
+      fields: {
+        createdAt: 0,
+        updatedAt: 0,
+        token: 0,
+        password: 0,
+        pets: 0,
+        favoriteNotices: 0,
+      },
+    }
   );
 
-  return res.json(setSuccessResponse(201, updatedUser));
+  return res.json(setSuccessResponse(200, updatedUser));
 };

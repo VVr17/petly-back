@@ -11,10 +11,8 @@ export const loginController = async (req, res) => {
 
   const user = await User.findOne(
     { email },
-    { token: 0, createdAt: 0, updatedAt: 0 }
-  ).populate("pets");
-  // user.pets = await Pet.find();
-  console.log("user", user);
+    { email: 1, password: 1, name: 1, city: 1, phone: 1 }
+  );
 
   if (!user) throw new createError(401, `Email or password is wrong`);
 

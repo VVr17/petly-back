@@ -17,15 +17,13 @@ export const addPetController = async (req, res) => {
     comments,
   });
 
-  console.log("savedPet", savedPet);
+  user.pets.push(savedPet._id);
 
-  // user.pets.push(noticeId);
-
-  // const updatedUser = await User.findByIdAndUpdate(
-  //   { _id: userId },
-  //   { pets: user.favoriteNotices },
-  //   { new: true }
-  // );
+  const updatedUser = await User.findByIdAndUpdate(
+    { _id: userId },
+    { pets: user.pets },
+    { new: true }
+  );
 
   return res.json(setSuccessResponse(201, savedPet));
 };
