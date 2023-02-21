@@ -4,53 +4,40 @@ import { User } from "../../models/userModel.js";
 // import createError from "http-errors";
 
 export const addPetWithImageController = async (req, res) => {
-  // const { name, birthDate, breed, photoURL, comments } = req.body;
-  console.log("in controller");
+  const { name, birthDate, breed, comments } = req.body;
+  // console.log("in controller");
+  // console.log("req.file", req.file.path);
   const { userId } = req.user;
   const user = await User.findById(userId);
 
-  // const owner = req.user.id;
-  const petData = req.body;
-
-  console.log("petData", petData);
+  console.log(
+    "name, birthDate, breed, comments",
+    name,
+    birthDate,
+    breed,
+    comments
+  );
+  // console.log("url", req.file.path);
   // const data = !!req.file
   //   ? { avatarURL: req.file.path, owner, ...petData }
   //   : { owner, ...petData };
 
-  // Pet.create(data)
-  //   .then((pet) => {
-  //     if (pet) {
-  //       User.findByIdAndUpdate(owner, { $push: { userPets: pet._id } })
-  //         .then((user) => {
-  //           if (user) {
-  //             res.status(201).json({ success: true, pet });
-  //           }
-  //         })
-  //         .catch((err) => {
-  //           throw new Error(err);
-  //         });
-  //     }
-  //   })
-  //   .catch((err) =>
-  //     res.status(400).json({ success: false, error: err, message: err.message })
-  // );
+  const savedPet = await Pet.create({
+    owner: userId,
+    name,
+    birthDate,
+    breed,
+    photoURL: req?.file?.path || null,
+    comments,
+  });
 
-  // const savedPet = await Pet.create({
-  //   owner: userId,
-  //   name,
-  //   birthDate,
-  //   breed,
-  //   // photoURL:
-  //   comments,
-  // });
+  user.pets.push(savedPet._id);
 
-  // user.pets.push(savedPet._id);
-  //
-  // const updatedUser = await User.findByIdAndUpdate(
-  //   { _id: userId },
-  //   { pets: user.pets },
-  //   { new: true }
-  // );
-  return res.json("ok");
-  // return res.json(setSuccessResponse(201, savedPet));
+  const updatedUser = await User.findByIdAndUpdate(
+    { _id: userId },
+    { pets: user.pets },
+    { new: true }
+  );
+  // return res.json("ok");
+  return res.json(setSuccessResponse(201, savedPet));
 };

@@ -9,6 +9,7 @@ import {
 import { petSchema } from "../../schemas/petSchema.js";
 import { uploadCloud } from "../../middlewares/uploadMiddleware.js";
 import { addPetWithImageController } from "../../controllers/pets/addPetWithImage.js";
+import { validatePetBody } from "../../middlewares/validatePetBody.js";
 
 const router = new express.Router();
 
@@ -19,8 +20,8 @@ router.delete("/:petId", errorWrapper(deletePetController));
 
 router.post(
   "/withImage",
-  // validateBody(petSchema),
   uploadCloud.single("petImage"),
+  validatePetBody(petSchema),
   errorWrapper(addPetWithImageController)
 );
 
