@@ -19,7 +19,10 @@ const noticeModel = new Schema(
       minLength: 2,
       maxLength: 16,
       trim: true,
-      match: [/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Only letters can be accepted"],
+      match: [
+        /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+        "Only letters can be accepted",
+      ],
       required: [true, "Name is required"],
     },
     breed: {
@@ -27,7 +30,10 @@ const noticeModel = new Schema(
       minLength: 2,
       maxLength: 24,
       trim: true,
-      match: [/^[a-zA-Z]+(?: [a-zA-Z]+)*$/, "Only letters can be accepted"],
+      match: [
+        /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+        "Only letters can be accepted",
+      ],
       required: [true, "Breed is required"],
     },
     sex: {
@@ -43,7 +49,7 @@ const noticeModel = new Schema(
       type: String,
       required: [true, "Location is required"],
       match: [
-        /^[a-zA-Z]+(?:-[a-zA-Z]+)*,\s*[a-zA-Z\s]+$/,
+        /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
         "Should be at least two words separated by string",
       ],
     },
