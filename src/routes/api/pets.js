@@ -7,6 +7,7 @@ import {
   deletePetController,
 } from "../../controllers/pets/index.js";
 import { petSchema } from "../../schemas/petSchema.js";
+import { uploadCloud } from "../../middlewares/uploadMiddleware.js";
 
 const router = new express.Router();
 
@@ -14,5 +15,12 @@ router.use(authMiddleware); // restricted routes
 
 router.post("/", validateBody(petSchema), errorWrapper(addPetController));
 router.delete("/:petId", errorWrapper(deletePetController));
+
+router.post(
+  "/withImage",
+  // validateBody(petSchema),
+  uploadCloud.single("petImage"),
+  errorWrapper(addPetController)
+);
 
 export default router;
