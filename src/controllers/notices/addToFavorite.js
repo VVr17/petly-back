@@ -25,6 +25,6 @@ export const addToFavoriteController = async (req, res) => {
   );
 
   res.json(
-    setSuccessResponse(200, { favoriteNotices: updatedUser.favoriteNotices })
+    setSuccessResponse(200, `Notice with id=${noticeId} has been added favorites`)
   );
 };
