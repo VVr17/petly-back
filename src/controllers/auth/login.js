@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import createError from "http-errors";
 import bcrypt from "bcrypt";
 import { User } from "../../models/userModel.js";
+import { Pet } from "../../models/petModel.js";
 import { setSuccessResponse } from "../../helpers/setResponse.js";
 import { createAndUpdateJwt } from "../../helpers/createJwt.js";
 
@@ -10,8 +11,10 @@ export const loginController = async (req, res) => {
 
   const user = await User.findOne(
     { email },
-    { email: 1, password: 1, city: 1, phone: 1, name: 1 }
-  );
+    { token: 0, createdAt: 0, updatedAt: 0 }
+  ).populate("pets");
+  // user.pets = await Pet.find();
+  console.log("user", user);
 
   if (!user) throw new createError(401, `Email or password is wrong`);
 

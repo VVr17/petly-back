@@ -19,5 +19,5 @@ export const getByCategoryController = async (req, res) => {
     throw new createError(404, "Notices not found");
   }
 
-  res.json(setSuccessResponse(200, { data }));
+  res.json(setSuccessResponse(200, data));
 };

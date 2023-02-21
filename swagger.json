@@ -441,15 +441,8 @@
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {
-          "201": {
-            "description": "Notice has been added successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Notice"
-                }
-              }
-            }
+          "200": {
+            "description": "Notice has been added to favorite"
           },
           "400": {
             "description": "Bad request"
