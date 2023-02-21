@@ -3,7 +3,7 @@ import { setSuccessResponse } from "../../helpers/setResponse.js";
 import { User } from "../../models/userModel.js";
 // import createError from "http-errors";
 
-export const addPetController = async (req, res) => {
+export const addPetWithImageController = async (req, res) => {
   // const { name, birthDate, breed, photoURL, comments } = req.body;
   console.log("in controller");
   const { userId } = req.user;

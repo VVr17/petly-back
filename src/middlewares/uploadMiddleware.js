@@ -16,7 +16,7 @@ console.log("Cloudinary configured successfully");
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   folder: "avatars",
-  allowedFormats: ["jpg", "png"],
+  // allowedFormats: ["jpg", "png"],
   filename: (req, file, cb) => {
     console.log("Setting filename to:", file.originalname);
     cb(null, file.originalname);
