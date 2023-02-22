@@ -12,6 +12,7 @@ import {
   getUserNoticesController,
 } from "../../controllers/notices/index.js";
 import { validateNoticeBody } from "../../middlewares/validateNoticeBody.js";
+import { uploadCloud } from "../../middlewares/uploadMiddleware.js";
 
 const router = new express.Router();
 
@@ -39,7 +40,7 @@ router.delete(
 router.get("/category/:categoryName", errorWrapper(getByCategoryController));
 router.post(
   "/category/:categoryName",
-  [authMiddleware, validateNoticeBody],
+  [authMiddleware, uploadCloud.single("petImage"), validateNoticeBody],
   errorWrapper(addNoticeController)
 );
 

@@ -25,10 +25,26 @@ const storage = new CloudinaryStorage({
   },
 });
 
-export const uploadCloud = multer({ storage });
+const fileFilter = (req, file, cb) => {
+  switch (file.mimetype) {
+    case "image/jpeg":
+      return cb(null, true);
+    case "image/png":
+      return cb(null, true);
+    case "image/webp":
+      return cb(null, true);
+    case "image/apng":
+      return cb(null, true);
+    case "image/avif":
+      return cb(null, true);
+    default:
+      cb(null, false);
+      break;
+  }
+};
 
-// export const uploader = multer({
-//   storage,
-//   limits: {fileSize: 20000},
-//   fileFilter,
-// });
+export const uploadCloud = multer({
+  storage,
+  // limits: { fileSize: 20000 },
+  fileFilter,
+});

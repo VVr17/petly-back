@@ -8,21 +8,18 @@ import {
 } from "../../controllers/pets/index.js";
 import { petSchema } from "../../schemas/petSchema.js";
 import { uploadCloud } from "../../middlewares/uploadMiddleware.js";
-import { addPetWithImageController } from "../../controllers/pets/addPetWithImage.js";
-import { validatePetBody } from "../../middlewares/validatePetBody.js";
+import { validateFormDataBody } from "../../middlewares/validateFormDataBody.js";
 
 const router = new express.Router();
 
 router.use(authMiddleware); // restricted routes
 
-router.post("/", validateBody(petSchema), errorWrapper(addPetController));
-router.delete("/:petId", errorWrapper(deletePetController));
-
 router.post(
-  "/withImage",
+  "/",
   uploadCloud.single("petImage"),
-  validatePetBody(petSchema),
-  errorWrapper(addPetWithImageController)
+  validateBody(petSchema),
+  errorWrapper(addPetController)
 );
+router.delete("/:petId", errorWrapper(deletePetController));
 
 export default router;

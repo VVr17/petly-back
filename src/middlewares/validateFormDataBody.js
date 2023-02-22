@@ -1,7 +1,7 @@
 import createError from "http-errors";
 import formidable from "formidable";
 
-export const validatePetBody = (schema) => (req, res, next) => {
+export const validateFormDataBody = (schema) => (req, res, next) => {
   const form = formidable({ multiples: true });
 
   form.parse(req, (err, fields, files) => {

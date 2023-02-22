@@ -13,6 +13,7 @@ export const updateUserController = async (req, res) => {
       birthday,
       phone,
       city,
+      photoURL: req?.file?.path,
     },
     {
       new: true,

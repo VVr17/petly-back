@@ -35,10 +35,6 @@
     {
       "name": "Pets",
       "description": "API for pets in the system"
-    },
-    {
-      "name": "Files",
-      "description": "API for files in the system"
     }
   ],
 
@@ -541,12 +537,23 @@
       "post": {
         "tags": ["Pets"],
         "summary": "Add pet by authorized user",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "petImage",
+            "in": "formData",
+            "description": "Image file to upload",
+            "type": "file",
+            "required": true
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "requestBody": {
           "description": "Notice object",
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/AddPetRequest"
               }
@@ -604,92 +611,6 @@
           },
           "500": {
             "description": "Internal server error"
-          }
-        }
-      }
-    },
-    "/api/files/user": {
-      "post": {
-        "summary": "Upload an image file",
-        "tags": ["Files"],
-        "consumes": ["multipart/form-data"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "image",
-            "in": "formData",
-            "description": "Image file to upload",
-            "type": "file",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "File uploaded successfully"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Invalid file format"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/files/pet": {
-      "post": {
-        "summary": "Upload an image file",
-        "tags": ["Files"],
-        "consumes": ["multipart/form-data"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "image",
-            "in": "formData",
-            "description": "Image file to upload",
-            "type": "file",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "File uploaded successfully"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Invalid file format"
-                }
-              }
-            }
           }
         }
       }

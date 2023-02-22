@@ -11,13 +11,22 @@ import {
   updateUserController,
 } from "../../controllers/auth/index.js";
 import { loginSchema } from "../../schemas/loginSchema.js";
+import { uploadCloud } from "../../middlewares/uploadMiddleware.js";
 
 const router = new express.Router();
 
-router.post("/signup", validateBody(userSchema), errorWrapper(signupController));
+router.post(
+  "/signup",
+  validateBody(userSchema),
+  errorWrapper(signupController)
+);
 router.post("/login", validateBody(loginSchema), errorWrapper(loginController));
 router.get("/logout", authMiddleware, errorWrapper(logoutController));
 router.get("/current", authMiddleware, errorWrapper(getCurrentUserController));
-router.put("/current", authMiddleware, errorWrapper(updateUserController));
+router.put(
+  "/current",
+  [authMiddleware, uploadCloud.single("userImage")],
+  errorWrapper(updateUserController)
+);
 
 export default router;

@@ -9,7 +9,6 @@ import {
   newsRouter,
   servicesRouter,
   petsRouter,
-  imagesRouter,
 } from "./src/routes/index.js";
 
 const app = express();
@@ -24,7 +23,6 @@ app.use("/api/notices", noticesRouter);
 app.use("/api/news", newsRouter);
 app.use("/api/services", servicesRouter);
 app.use("/api/pets", petsRouter);
-app.use("/api/files", imagesRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
