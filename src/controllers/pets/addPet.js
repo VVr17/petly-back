@@ -4,18 +4,17 @@ import { User } from "../../models/userModel.js";
 // import createError from "http-errors";
 
 export const addPetController = async (req, res) => {
-  const { name, birthDate, breed, photoURL, comments } = req.body;
+  // const { name, birthDate, breed, comments, photoURL } = req.body;
+
   const { userId } = req.user;
   const user = await User.findById(userId);
+  const petData = req.body;
 
-  const savedPet = await Pet.create({
-    owner: userId,
-    name,
-    birthDate,
-    breed,
-    // photoURL:
-    comments,
-  });
+  const data = !!req.file
+    ? { photoURL: req.file.path, owner: userId, ...petData }
+    : { owner: userId, ...petData };
+
+  const savedPet = await Pet.create(data);
 
   user.pets.push(savedPet._id);
 

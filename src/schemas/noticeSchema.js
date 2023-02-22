@@ -4,7 +4,7 @@ const Joi = BaseJoi.extend(JoiDate);
 
 export const noticeSchema = Joi.object({
   title: Joi.string().min(2).max(48).required(),
-  photoURL: Joi.string().uri().required(),
+  photoURL: Joi.string().uri(),
   name: Joi.string()
     .min(2)
     .max(16)
@@ -34,7 +34,7 @@ export const noticeSchema = Joi.object({
 
 export const noticeSellSchema = Joi.object({
   title: Joi.string().min(2).max(48).required(),
-  photoURL: Joi.string().uri().required(),
+  photoURL: Joi.string().uri(),
   name: Joi.string()
     .min(2)
     .max(16)

@@ -10,6 +10,7 @@ export const addNoticeController = async (req, res) => {
 
   const data = await Notice.create({
     ...body,
+    photoURL: req?.file?.path,
     category: categoryName,
     owner: userId,
   });
