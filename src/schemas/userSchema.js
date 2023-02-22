@@ -43,13 +43,13 @@ export const userSchema = Joi.object({
     )
     .required(),
   birthday: Joi.date().less(Date.now()).format("DD.MM.YYYY"),
-  // imageFile: Joi.object({
-  //   originalname: Joi.string().required(),
-  //   fieldname: Joi.string(),
-  //   encoding: Joi.string(),
-  //   mimetype: Joi.string(),
-  //   path: Joi.string().required(),
-  //   size: Joi.number(),
-  //   filename: Joi.string(),
-  // }),
+  imageFile: Joi.object({
+    originalname: Joi.string().required(),
+    fieldname: Joi.string(),
+    encoding: Joi.string(),
+    mimetype: Joi.string(),
+    path: Joi.string().required(),
+    size: Joi.number(),
+    filename: Joi.string(),
+  }),
 });
