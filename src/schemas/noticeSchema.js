@@ -4,7 +4,15 @@ const Joi = BaseJoi.extend(JoiDate);
 
 export const noticeSchema = Joi.object({
   title: Joi.string().min(2).max(48).required(),
-  photoURL: Joi.string().uri(),
+  imageFile: Joi.object({
+    originalname: Joi.string().required(),
+    fieldname: Joi.string(),
+    encoding: Joi.string(),
+    mimetype: Joi.string(),
+    path: Joi.string().required(),
+    size: Joi.number(),
+    filename: Joi.string(),
+  }).required(),
   name: Joi.string()
     .min(2)
     .max(16)
@@ -34,7 +42,15 @@ export const noticeSchema = Joi.object({
 
 export const noticeSellSchema = Joi.object({
   title: Joi.string().min(2).max(48).required(),
-  photoURL: Joi.string().uri(),
+  imageFile: Joi.object({
+    originalname: Joi.string().required(),
+    fieldname: Joi.string(),
+    encoding: Joi.string(),
+    mimetype: Joi.string(),
+    path: Joi.string().required(),
+    size: Joi.number(),
+    filename: Joi.string(),
+  }).required(),
   name: Joi.string()
     .min(2)
     .max(16)

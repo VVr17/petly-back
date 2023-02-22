@@ -21,5 +21,13 @@ export const petSchema = Joi.object({
     )
     .required(),
   comments: Joi.string().min(8).max(200),
-  photoURL: Joi.string().uri(),
+  imageFile: Joi.object({
+    originalname: Joi.string().required(),
+    fieldname: Joi.string(),
+    encoding: Joi.string(),
+    mimetype: Joi.string(),
+    path: Joi.string().required(),
+    size: Joi.number(),
+    filename: Joi.string(),
+  }).required(),
 });

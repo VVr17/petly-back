@@ -12,7 +12,7 @@ const noticeModel = new Schema(
     },
     photoURL: {
       type: String,
-      // required: [true, "PhotoURL is required"],
+      required: [true, "PhotoURL is required"],
     },
     name: {
       type: String,
