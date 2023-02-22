@@ -13,8 +13,6 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-console.log("Cloudinary configured successfully");
-
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   folder: "avatars",
@@ -25,7 +23,19 @@ const storage = new CloudinaryStorage({
   },
 });
 
-const fileFilter = (req, file, cb) => {
+/**
+ *    params: {
+        folder: "avatars",
+        allowedFormats: ["jpg", "png"],
+  }
+ */
+
+export const uploadCloud = multer({
+  storage,
+});
+
+/**
+ * const fileFilter = (req, file, cb) => {
   switch (file.mimetype) {
     case "image/jpeg":
       return cb(null, true);
@@ -42,9 +52,12 @@ const fileFilter = (req, file, cb) => {
       break;
   }
 };
-
-export const uploadCloud = multer({
-  storage,
-  // limits: { fileSize: 20000 },
-  fileFilter,
-});
+ */
+/**
+ *  params: {
+    transformation: [
+      { width: 500, crop: 'scale' },
+      { fetch_format: 'auto' }
+    ]
+  }
+ */

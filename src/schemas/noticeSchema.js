@@ -50,7 +50,7 @@ export const noticeSellSchema = Joi.object({
     path: Joi.string().required(),
     size: Joi.number(),
     filename: Joi.string(),
-  }).required(),
+  }),
   name: Joi.string()
     .min(2)
     .max(16)
