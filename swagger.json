@@ -146,13 +146,21 @@
       "put": {
         "tags": ["Users"],
         "summary": "Update current user",
-        "parameters": [],
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "userImage",
+            "type": "file",
+            "description": "The file to upload."
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "requestBody": {
           "description": "User update",
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateUserRequest"
               }
@@ -330,11 +338,22 @@
         "tags": ["Notices"],
         "summary": "Post notice to chosen category by authorized user",
         "security": [{ "Bearer": [] }],
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "petImage",
+            "in": "formData",
+            "description": "Image file to upload",
+            "type": "file",
+            "required": true
+          }
+        ],
         "requestBody": {
           "description": "Notice object",
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/AddNoticeRequest"
               }
@@ -754,6 +773,10 @@
             "type": "string",
             "description": "User`s birthday",
             "example": "12.06.1990"
+          },
+          "userImage": {
+            "type": "file",
+            "description": "file to download"
           }
         }
       },
@@ -840,7 +863,7 @@
         "type": "object",
         "required": [
           "title",
-          "photoUrl",
+          "petImage",
           "name",
           "sex",
           "birthDate",
@@ -855,10 +878,9 @@
             "description": "notice title",
             "example": "Dog for sell"
           },
-          "photoURL": {
-            "type": "string",
-            "description": "URL photo",
-            "example": "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_960_720.jpg"
+          "petImage": {
+            "type": "file",
+            "description": "file to download"
           },
           "name": {
             "type": "string",
@@ -943,7 +965,7 @@
         "type": "object",
         "required": [
           "title",
-          "photoUrl",
+          "petImage",
           "name",
           "sex",
           "birthDate",
@@ -968,10 +990,9 @@
             "description": "Pet's birthday",
             "example": "12-06-2020"
           },
-          "photoURL": {
-            "type": "string",
-            "description": "URL photo",
-            "example": "https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_960_720.jpg"
+          "petImage": {
+            "type": "file",
+            "description": "file to download"
           },
           "comments": {
             "type": "string",
