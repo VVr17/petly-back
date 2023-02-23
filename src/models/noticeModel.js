@@ -5,9 +5,9 @@ const noticeModel = new Schema(
   {
     title: {
       type: String,
-      minLength: 2,
-      maxLength: 48,
-      trim: true,
+      // minLength: 2,
+      // maxLength: 48,
+      // trim: true,
       // required: [true, "Title is required"],
     },
     photoURL: {
@@ -16,29 +16,29 @@ const noticeModel = new Schema(
     },
     name: {
       type: String,
-      minLength: 2,
-      maxLength: 16,
-      trim: true,
-      match: [
-        /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
-        "Only letters can be accepted",
-      ],
+      // minLength: 2,
+      // maxLength: 16,
+      // trim: true,
+      // match: [
+      //   /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      //   "Only letters can be accepted",
+      // ],
       // required: [true, "Name is required"],
     },
     breed: {
       type: String,
-      minLength: 2,
-      maxLength: 24,
-      trim: true,
-      match: [
-        /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
-        "Only letters can be accepted",
-      ],
+      // minLength: 2,
+      // maxLength: 24,
+      // trim: true,
+      // match: [
+      //   /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      //   "Only letters can be accepted",
+      // ],
       // required: [true, "Breed is required"],
     },
     sex: {
       type: String,
-      enum: ["male", "female"],
+      // enum: ["male", "female"],
       // required: [true, "Sex is required"],
     },
     birthDate: {
@@ -48,20 +48,20 @@ const noticeModel = new Schema(
     location: {
       type: String,
       // required: [true, "Location is required"],
-      match: [
-        /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
-        "Should be at least two words separated by string",
-      ],
+      // match: [
+      //   /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
+      //   "Should be at least two words separated by string",
+      // ],
     },
     comments: {
       type: String,
-      minLength: 8,
-      maxLength: 200,
+      // minLength: 8,
+      // maxLength: 200,
       // required: [true, "Comment is required"],
     },
     price: {
       type: Number,
-      min: 1,
+      // min: 1,
     },
     owner: {
       type: SchemaTypes.ObjectId,
