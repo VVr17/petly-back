@@ -40,7 +40,7 @@ router.delete(
 router.get("/category/:categoryName", errorWrapper(getByCategoryController));
 router.post(
   "/category/:categoryName",
-  [authMiddleware, uploadCloud.single("petImage"), validateNoticeBody],
+  // [authMiddleware, uploadCloud.single("petImage"), validateNoticeBody],
   errorWrapper(addNoticeController)
 );
 
