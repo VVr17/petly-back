@@ -17,7 +17,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "avatars",
-    allowedFormats: ["jpg", "png"],
+    allowedFormats: ["jpg", "png", "webp"],
     transformation: [{ width: 600, crop: "scale" }, { fetch_format: "auto" }],
   },
   filename: (req, file, cb) => {
@@ -47,12 +47,3 @@ export const uploadCloud = multer({
   storage,
   fileFilter,
 });
-
-/**
- *  params: {
-    transformation: [
-      { width: 500, crop: 'scale' },
-      { fetch_format: 'auto' }
-    ]
-  }
- */

@@ -76,7 +76,9 @@ export const noticeSellSchema = Joi.object({
     )
     .required(),
   comments: Joi.string().min(8).max(200).required(),
-  price: Joi.string().required(),
+  price: Joi.string()
+    .pattern(/^[1-9]\d*(\.\d+)?$/, "Should no begin from 0, only if 0.99")
+    .required(),
 });
 
 // Joi.array().items(Joi.string().required(), Joi.string().required());

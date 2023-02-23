@@ -6,17 +6,13 @@ export const getFavoritesController = async (req, res) => {
   const { userId } = req.user;
 
   const userDataWithNotices = await User.findById(userId).populate(
-    "favoriteNotices"
+    "favoriteNotices",
+    "-createdAt -updatedAt -owner"
   );
 
-  // console.log("userDataWithNotices", userDataWithNotices);
   if (userDataWithNotices.favoriteNotices.length === 0) {
     throw new createError(404, `Not find any notices!`);
   }
-  // console.log(
-  //   "userDataWithNotices.favoriteNotices",
-  //   userDataWithNotices.favoriteNotices
-  // );
 
   return res.json(setSuccessResponse(200, userDataWithNotices.favoriteNotices));
 };
