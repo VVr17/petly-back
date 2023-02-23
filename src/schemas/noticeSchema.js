@@ -64,7 +64,8 @@ export const noticeSellSchema = Joi.object({
       "Only letters can be accepted"
     ),
   sex: Joi.string().valid("male", "female"),
-  birthDate: Joi.date().less(Date.now()).format("DD.MM.YYYY"),
+  // birthDate: Joi.date().less(Date.now()).format("DD.MM.YYYY"),
+  birthDate: Joi.any(),
   location: Joi.string().regex(
     /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
     "Should be at least two words separated by string"
