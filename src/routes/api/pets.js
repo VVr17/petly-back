@@ -8,7 +8,6 @@ import {
 } from "../../controllers/pets/index.js";
 import { petSchema } from "../../schemas/petSchema.js";
 import { uploadCloud } from "../../middlewares/uploadMiddleware.js";
-import { validateFormDataBody } from "../../middlewares/validateFormDataBody.js";
 
 const router = new express.Router();
 
