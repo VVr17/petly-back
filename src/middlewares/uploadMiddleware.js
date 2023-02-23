@@ -15,11 +15,10 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  // folder: "avatars",
-  // allowedFormats: ["jpg", "png"],
   params: {
     folder: "avatars",
     allowedFormats: ["jpg", "png"],
+    transformation: [{ width: 500, crop: "scale" }, { fetch_format: "auto" }],
   },
   filename: (req, file, cb) => {
     console.log("Setting filename to:", file.originalname);
@@ -27,20 +26,7 @@ const storage = new CloudinaryStorage({
   },
 });
 
-/**
- *    params: {
-        folder: "avatars",
-        allowedFormats: ["jpg", "png"],
-  }
- */
-
-export const uploadCloud = multer({
-  storage,
-  fileFilter,
-});
-
-/**
- * const fileFilter = (req, file, cb) => {
+const fileFilter = (req, file, cb) => {
   switch (file.mimetype) {
     case "image/jpeg":
       return cb(null, true);
@@ -57,7 +43,11 @@ export const uploadCloud = multer({
       break;
   }
 };
- */
+export const uploadCloud = multer({
+  storage,
+  fileFilter,
+});
+
 /**
  *  params: {
     transformation: [
