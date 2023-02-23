@@ -10,12 +10,12 @@ export const addNoticeController = async (req, res) => {
   console.log("body", body);
   console.log("req?.file?.path", req?.file?.path);
 
-  // const data = await Notice.create({
-  //   ...body,
-  //   photoURL: req?.file?.path,
-  //   category: categoryName,
-  //   owner: userId,
-  // });
-  res.json("its ok");
-  // res.json(setSuccessResponse(200, data));
+  const data = await Notice.create({
+    ...body,
+    photoURL: req?.file?.path,
+    category: categoryName,
+    owner: userId,
+  });
+
+  res.json(setSuccessResponse(200, data));
 };

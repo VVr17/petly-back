@@ -8,11 +8,11 @@ const noticeModel = new Schema(
       minLength: 2,
       maxLength: 48,
       trim: true,
-      // required: [true, "Title is required"],
+      required: [true, "Title is required"],
     },
     photoURL: {
       type: String,
-      // required: [true, "PhotoURL is required"],
+      required: [true, "PhotoURL is required"],
     },
     name: {
       type: String,
@@ -23,7 +23,7 @@ const noticeModel = new Schema(
         /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
         "Only letters can be accepted",
       ],
-      // required: [true, "Name is required"],
+      required: [true, "Name is required"],
     },
     breed: {
       type: String,
@@ -34,20 +34,20 @@ const noticeModel = new Schema(
         /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
         "Only letters can be accepted",
       ],
-      // required: [true, "Breed is required"],
+      required: [true, "Breed is required"],
     },
     sex: {
       type: String,
       enum: ["male", "female"],
-      // required: [true, "Sex is required"],
+      required: [true, "Sex is required"],
     },
     birthDate: {
       type: String,
-      // required: [true, "BirthDate is required"],
+      required: [true, "BirthDate is required"],
     },
     location: {
       type: String,
-      // required: [true, "Location is required"],
+      required: [true, "Location is required"],
       match: [
         /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
         "Should be at least two words separated by string",
@@ -57,10 +57,10 @@ const noticeModel = new Schema(
       type: String,
       minLength: 8,
       maxLength: 200,
-      // required: [true, "Comment is required"],
+      required: [true, "Comment is required"],
     },
     price: {
-      type: Number,
+      type: String,
       min: 1,
     },
     owner: {
