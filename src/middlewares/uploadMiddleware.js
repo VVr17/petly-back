@@ -15,8 +15,12 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "avatars",
-  allowedFormats: ["jpg", "png"],
+  // folder: "avatars",
+  // allowedFormats: ["jpg", "png"],
+  params: {
+    folder: "avatars",
+    allowedFormats: ["jpg", "png"],
+  },
   filename: (req, file, cb) => {
     console.log("Setting filename to:", file.originalname);
     cb(null, file.originalname);
@@ -32,6 +36,7 @@ const storage = new CloudinaryStorage({
 
 export const uploadCloud = multer({
   storage,
+  fileFilter,
 });
 
 /**

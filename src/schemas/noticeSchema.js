@@ -13,28 +13,27 @@ export const noticeSchema = Joi.object({
     size: Joi.number(),
     filename: Joi.string(),
   }),
-  name: Joi.string(),
-  // .min(2)
-  // .max(16)
-  // .regex(
-  //   /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
-  //   "Only letters can be accepted"
-  // ),
-  breed: Joi.string(),
-  // .min(2)
-  // .max(24)
-  // .regex(
-  //   /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
-  //   "Only letters can be accepted"
-  // ),
+  name: Joi.string()
+    .min(2)
+    .max(16)
+    .regex(
+      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      "Only letters can be accepted"
+    ),
+  breed: Joi.string()
+    .min(2)
+    .max(24)
+    .regex(
+      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      "Only letters can be accepted"
+    ),
   sex: Joi.string().valid("male", "female"),
   // birthDate: Joi.date().less(Date.now()).format("DD.MM.YYYY"),
   birthDate: Joi.any(),
-  location: Joi.string(),
-  //   .regex(
-  //   /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
-  //   "Should be at least two words separated by string"
-  // ),
+  location: Joi.string().regex(
+    /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
+    "Should be at least two words separated by string"
+  ),
   comments: Joi.string().min(8).max(200),
 });
 
