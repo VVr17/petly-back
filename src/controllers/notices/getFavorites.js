@@ -7,7 +7,7 @@ export const getFavoritesController = async (req, res) => {
 
   const userDataWithNotices = await User.findById(userId).populate(
     "favoriteNotices",
-    "-createdAt -updatedAt -owner"
+    "-createdAt -updatedAt"
   );
 
   if (userDataWithNotices.favoriteNotices.length === 0) {
