@@ -9,7 +9,7 @@ export const getByCategoryController = async (req, res) => {
 
   const data = await Notice.find(
     { category: categoryName },
-    "title breed location category birthDate photoURL price",
+    "title breed location category birthDate photoURL price owner",
     {
       skip,
       limit: Number(limit),
