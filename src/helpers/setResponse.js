@@ -1,10 +1,11 @@
-export const setSuccessResponse = (code, data) => {
+export const setSuccessResponse = (code, data, totalItems) => {
   switch (code) {
     case 200:
       return {
         status: "success",
         code: 200,
         data: data,
+        totalItems: totalItems,
       };
 
     case 201:
