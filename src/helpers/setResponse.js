@@ -5,7 +5,6 @@ export const setSuccessResponse = (code, data, totalItems) => {
         status: "success",
         code: 200,
         data: data,
-        totalItems: totalItems,
       };
 
     case 201:
@@ -19,6 +18,20 @@ export const setSuccessResponse = (code, data, totalItems) => {
       return {
         status: "logout",
         code: 204,
+      };
+
+    default:
+      break;
+  }
+};
+export const setSuccessResponseNotices = (code, data, totalItems) => {
+  switch (code) {
+    case 200:
+      return {
+        status: "success",
+        code: 200,
+        data: data,
+        totalItems: totalItems,
       };
 
     default:

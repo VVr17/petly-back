@@ -1,5 +1,5 @@
 import { User } from "../../models/userModel.js";
-import { setSuccessResponse } from "../../helpers/setResponse.js";
+import { setSuccessResponseNotices } from "../../helpers/setResponse.js";
 import createError from "http-errors";
 
 export const getFavoritesController = async (req, res) => {
@@ -19,6 +19,10 @@ export const getFavoritesController = async (req, res) => {
   }
 
   return res.json(
-    setSuccessResponse(200, userDataWithNotices.favoriteNotices, totalItems)
+    setSuccessResponseNotices(
+      200,
+      userDataWithNotices.favoriteNotices,
+      totalItems
+    )
   );
 };

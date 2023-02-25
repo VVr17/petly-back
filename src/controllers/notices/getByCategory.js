@@ -1,4 +1,4 @@
-import { setSuccessResponse } from "../../helpers/setResponse.js";
+import { setSuccessResponseNotices } from "../../helpers/setResponse.js";
 import { Notice } from "../../models/noticeModel.js";
 import createError from "http-errors";
 
@@ -23,5 +23,5 @@ export const getByCategoryController = async (req, res) => {
     throw new createError(404, "Notices not found");
   }
 
-  res.json(setSuccessResponse(200, data, totalItems));
+  res.json(setSuccessResponseNotices(200, data, totalItems));
 };
