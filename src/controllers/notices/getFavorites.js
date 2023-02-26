@@ -7,6 +7,7 @@ export const getFavoritesController = async (req, res) => {
 
   const totalItems = await User.findById(userId)
     .populate("favoriteNotices", "-createdAt -updatedAt")
+    .sort({ createdAt: "descending" })
     .count();
 
   const userDataWithNotices = await User.findById(userId).populate(
