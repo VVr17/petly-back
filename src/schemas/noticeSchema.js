@@ -33,7 +33,7 @@ export const noticeSchema = Joi.object({
   birthDate: Joi.date().less(Date.now()).format("DD.MM.YYYY").required(),
   location: Joi.string()
     .regex(
-      /^[a-zA-Zа-яА-Я]+(?:[-\s]?[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я'’\s-]+$/,
+      /^[a-zA-Zа-яА-ЯіІїЇ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
       "Should be at least two words separated by string"
     )
     .required(),
@@ -71,7 +71,7 @@ export const noticeSellSchema = Joi.object({
   birthDate: Joi.date().less(Date.now()).format("DD.MM.YYYY").required(),
   location: Joi.string()
     .regex(
-      /^[a-zA-Zа-яА-Я]+(?:[-\s]?[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я'’\s-]+$/,
+      /^[a-zA-Zа-яА-ЯіІїЇ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
       "Should be at least two words separated by string"
     )
     .required(),

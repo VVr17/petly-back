@@ -49,7 +49,7 @@ const noticeModel = new Schema(
       type: String,
       required: [true, "Location is required"],
       match: [
-        /^[a-zA-Zа-яА-Я]+(?:-[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я\s]+$/,
+        /^[a-zA-Zа-яА-ЯіІїЇ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
         "Should be at least two words separated by string",
       ],
     },

@@ -25,7 +25,7 @@ export const userSchema = Joi.object({
   city: Joi.string()
     .min(4)
     .regex(
-      /^[a-zA-Zа-яА-Я]+(?:[-\s]?[a-zA-Zа-яА-Я]+)*,\s*[a-zA-Zа-яА-Я'’\s-]+$/,
+      /^[a-zA-Zа-яА-ЯіІїЇ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
       "Should be at least two words separated by string"
     )
     .required(),

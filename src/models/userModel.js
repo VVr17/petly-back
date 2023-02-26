@@ -34,7 +34,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, "City/region is required"],
       match: [
-        /^[a-zA-Z]+(?:-[a-zA-Z]+)*,\s*[a-zA-Z\s]+$/,
+        /^[a-zA-Zа-яА-ЯіІїЇ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
         "Should be at least two words separated by string",
       ],
     },
