@@ -10,7 +10,7 @@ const petSchema = new Schema(
       minLength: 2,
       maxLength: 16,
       match: [
-        /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+        /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
         "Only letters can be accepted",
       ],
       required: [true, "Name is required"],

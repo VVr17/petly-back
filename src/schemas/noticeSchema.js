@@ -17,7 +17,7 @@ export const noticeSchema = Joi.object({
     .min(2)
     .max(16)
     .regex(
-      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       "Only letters can be accepted"
     )
     .required(),
@@ -25,7 +25,7 @@ export const noticeSchema = Joi.object({
     .min(2)
     .max(24)
     .regex(
-      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       "Only letters can be accepted"
     )
     .required(),
@@ -55,7 +55,7 @@ export const noticeSellSchema = Joi.object({
     .min(2)
     .max(16)
     .regex(
-      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       "Only letters can be accepted"
     )
     .required(),
@@ -63,7 +63,7 @@ export const noticeSellSchema = Joi.object({
     .min(2)
     .max(24)
     .regex(
-      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       "Only letters can be accepted"
     )
     .required(),

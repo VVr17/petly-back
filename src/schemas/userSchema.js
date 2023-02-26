@@ -38,7 +38,7 @@ export const userSchema = Joi.object({
     .min(3)
     .max(12)
     .regex(
-      /^[a-zA-Zа-яА-Я]+(?: [a-zA-Zа-яА-Я]+)*$/,
+      /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       "Only letters can be accepted"
     )
     .required(),
