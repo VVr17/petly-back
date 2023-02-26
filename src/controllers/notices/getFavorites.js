@@ -5,10 +5,7 @@ import createError from "http-errors";
 export const getFavoritesController = async (req, res) => {
   const { userId } = req.user;
 
-  const totalItems = await User.findById(userId)
-    .populate("favoriteNotices", "-createdAt -updatedAt")
-    .sort({ createdAt: "descending" })
-    .count();
+  const totalItems = await User.findById(userId).count();
 
   const userDataWithNotices = await User.findById(userId).populate(
     "favoriteNotices",
@@ -18,6 +15,8 @@ export const getFavoritesController = async (req, res) => {
   if (userDataWithNotices.favoriteNotices.length === 0) {
     throw new createError(404, `Not find any notices!`);
   }
+
+  userDataWithNotices.favoriteNotices.reverse();
 
   return res.json(
     setSuccessResponseNotices(
