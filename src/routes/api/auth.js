@@ -12,6 +12,7 @@ import {
 } from "../../controllers/auth/index.js";
 import { loginSchema } from "../../schemas/loginSchema.js";
 import { uploadCloud } from "../../middlewares/uploadMiddleware.js";
+import { userUpdateSchema } from "../../schemas/userUpdateSchema.js";
 
 const router = new express.Router();
 
@@ -25,7 +26,11 @@ router.get("/logout", authMiddleware, errorWrapper(logoutController));
 router.get("/current", authMiddleware, errorWrapper(getCurrentUserController));
 router.put(
   "/current",
-  [authMiddleware, uploadCloud.single("userImage")],
+  [
+    authMiddleware,
+    uploadCloud.single("userImage"),
+    validateBody(userUpdateSchema),
+  ],
   errorWrapper(updateUserController)
 );
 
