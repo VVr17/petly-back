@@ -8,7 +8,7 @@ export const userSchema = Joi.object({
       minDomainSegments: 2,
     })
     .regex(
-      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,10})+)$/,
+      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,3})+)$/,
       "Please enter a valid email address"
     )
     .required()
