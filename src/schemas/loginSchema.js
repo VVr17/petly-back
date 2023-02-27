@@ -2,9 +2,8 @@ import Joi from "joi";
 
 export const loginSchema = Joi.object({
   email: Joi.string()
-    .email()
     .regex(
-      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,10})+)$/,
+      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,3})+)$/,
       "Please enter a valid email address"
     )
     .required()
