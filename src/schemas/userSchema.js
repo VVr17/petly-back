@@ -4,9 +4,7 @@ const Joi = BaseJoi.extend(JoiDate);
 
 export const userSchema = Joi.object({
   email: Joi.string()
-    // .email({
-    //   minDomainSegments: 2,
-    // })
+    .email()
     .regex(
       /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,3})+)$/,
       "Please enter a valid email address"
