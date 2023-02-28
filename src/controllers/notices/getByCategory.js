@@ -3,7 +3,7 @@ import { Notice } from "../../models/noticeModel.js";
 import createError from "http-errors";
 
 export const getByCategoryController = async (req, res) => {
-  const { page = 1, limit, search } = req.query;
+  const { page = 1, limit = 12, search } = req.query;
   const { categoryName } = req.params;
   const skip = (page - 1) * limit;
 
