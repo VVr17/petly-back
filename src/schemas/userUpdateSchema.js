@@ -32,7 +32,7 @@ export const userUpdateSchema = Joi.object({
     .format("DD.MM.YYYY")
     .allow("00.00.0000"),
   imageFile: Joi.object({
-    originalname: Joi.string,
+    originalname: Joi.string(),
     fieldname: Joi.string(),
     encoding: Joi.string(),
     mimetype: Joi.string(),
