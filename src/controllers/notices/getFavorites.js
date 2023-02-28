@@ -14,10 +14,6 @@ export const getFavoritesController = async (req, res) => {
   const favorites = userDataWithNotices.favoriteNotices;
   const totalItems = favorites.length;
 
-  // if (totalItems === 0) {
-  //   throw new createError(404, `Not find any notices!`);
-  // }
-
   const filteredBySearch = !search
     ? favorites
     : favorites.filter((notice) =>

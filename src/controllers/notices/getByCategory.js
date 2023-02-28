@@ -20,9 +20,5 @@ export const getByCategoryController = async (req, res) => {
     }
   ).sort({ createdAt: "descending" });
 
-  // if (!data.length) {
-  //   throw new createError(404, "Notices not found");
-  // }
-
   res.json(setSuccessResponseNotices(200, data, totalItems));
 };
