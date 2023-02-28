@@ -5,16 +5,18 @@ import { User } from "../../models/userModel.js";
 
 export const signupController = async (req, res) => {
   try {
-    const createdUser = await User.create({ ...req.body });
-    const token = await createAndUpdateJwt(createdUser._id);
+    const { email, name, city, phone, _id } = await User.create({
+      ...req.body,
+    });
+    const token = await createAndUpdateJwt(_id);
 
     const newUser = {
       token,
       user: {
-        email: createdUser.email,
-        name: createdUser.name,
-        city: createdUser.city,
-        phone: createdUser.phone,
+        email,
+        name,
+        city,
+        phone,
       },
     };
 

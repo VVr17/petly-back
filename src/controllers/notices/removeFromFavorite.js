@@ -6,17 +6,14 @@ export const removeFromFavoritesController = async (req, res) => {
   const { noticeId } = req.params;
   const { userId } = req.user;
   const user = await User.findById(userId);
-  const index = user.favoriteNotices.indexOf(noticeId);
 
-  if (index === -1) {
+  if (!user.favoriteNotices.includes(noticeId)) {
     throw new createError(400, `Notice with ${noticeId} has not been found`);
   }
 
-  user.favoriteNotices.splice(index, 1);
-
   await User.findByIdAndUpdate(
     { _id: userId },
-    { favoriteNotices: user.favoriteNotices },
+    { $pull: { favoriteNotices: noticeId } },
     { new: true }
   );
 

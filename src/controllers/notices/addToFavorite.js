@@ -5,26 +5,27 @@ import createError from "http-errors";
 export const addToFavoriteController = async (req, res) => {
   const { noticeId } = req.params;
   const { userId } = req.user;
+
   const user = await User.findById(userId);
+  const isInFavorites = user.favoriteNotices.includes(noticeId);
 
-  const checkNotice = user.favoriteNotices.includes(noticeId);
-
-  if (checkNotice) {
+  if (isInFavorites) {
     throw new createError(
       409,
       `Notice with id: ${noticeId} has been already added`
     );
   }
 
-  user.favoriteNotices.push(noticeId);
-
-  const updatedUser = await User.findByIdAndUpdate(
+  await User.findByIdAndUpdate(
     { _id: userId },
-    { favoriteNotices: user.favoriteNotices },
+    { $push: { favoriteNotices: noticeId } },
     { new: true }
   );
 
   res.json(
-    setSuccessResponse(200, `Notice with id=${noticeId} has been added favorites`)
+    setSuccessResponse(
+      200,
+      `Notice with id=${noticeId} has been added favorites`
+    )
   );
 };

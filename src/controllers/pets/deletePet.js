@@ -6,8 +6,6 @@ import { User } from "../../models/userModel.js";
 export const deletePetController = async (req, res) => {
   const { userId } = req.user;
   const { petId } = req.params;
-  const user = await User.findById(userId);
-  const index = user.pets.indexOf(petId);
 
   const delPet = await Pet.findById(petId);
   if (!delPet) {
@@ -16,11 +14,9 @@ export const deletePetController = async (req, res) => {
 
   await Pet.findByIdAndRemove(petId);
 
-  user.pets.splice(index, 1);
-
   await User.findByIdAndUpdate(
     { _id: userId },
-    { pets: user.pets },
+    { $pull: { pets: petId } },
     { new: true }
   );
 

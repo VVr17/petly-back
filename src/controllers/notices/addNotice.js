@@ -7,8 +7,6 @@ export const addNoticeController = async (req, res) => {
   const { categoryName } = req.params;
   const { body } = req;
   const { userId } = req.user;
-  console.log("body", body);
-  console.log("req?.file?.path", req?.file?.path);
 
   const data = await Notice.create({
     ...body,

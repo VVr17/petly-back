@@ -6,8 +6,8 @@ export const getByCategoryController = async (req, res) => {
   const { page = 1, limit, search } = req.query;
   const { categoryName } = req.params;
   const skip = (page - 1) * limit;
-  const totalItems = await Notice.find({ category: categoryName }).count();
 
+  const totalItems = await Notice.find({ category: categoryName }).count();
   const data = await Notice.find(
     {
       category: categoryName,
@@ -19,6 +19,7 @@ export const getByCategoryController = async (req, res) => {
       limit: Number(limit),
     }
   ).sort({ createdAt: "descending" });
+
   if (!data.length) {
     throw new createError(404, "Notices not found");
   }

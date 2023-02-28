@@ -9,8 +9,10 @@ export const getByIdController = async (req, res) => {
     createdAt: 0,
     updatedAt: 0,
   }).populate("owner", "email phone");
+
   if (!data) {
     throw new createError(404, `The notice with ID ${noticeId} does not exist`);
   }
+
   res.json(setSuccessResponse(200, data));
 };

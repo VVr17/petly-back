@@ -7,8 +7,8 @@ export const validateNoticeBody = (req, res, next) => {
 
   const { error } =
     categoryName === "sell"
-      ? noticeSellSchema.validate({ ...req.body, imageFile: req.file })
-      : noticeSchema.validate({ ...req.body, imageFile: req.file });
+      ? noticeSellSchema.validate({ ...body, imageFile: req.file })
+      : noticeSchema.validate({ ...body, imageFile: req.file });
 
   if (error) {
     next(new createError(400, error.message));

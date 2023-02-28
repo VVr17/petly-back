@@ -14,7 +14,9 @@ export const loginController = async (req, res) => {
     { email: 1, password: 1, name: 1, city: 1, phone: 1 }
   );
 
-  if (!user) throw new createError(401, `Email or password is wrong`);
+  if (!user) {
+    throw new createError(401, `Email or password is wrong`);
+  }
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) {
