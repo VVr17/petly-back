@@ -14,7 +14,7 @@ export const getFavoritesController = async (req, res) => {
   const favorites = userDataWithNotices.favoriteNotices;
   const totalItems = favorites.length;
 
-  if (favorites.length === 0) {
+  if (totalItems === 0) {
     throw new createError(404, `Not find any notices!`);
   }
 
