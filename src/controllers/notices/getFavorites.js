@@ -4,6 +4,7 @@ import createError from "http-errors";
 
 export const getFavoritesController = async (req, res) => {
   const { userId } = req.user;
+  const { search } = req.query;
 
   const totalItems = await User.findById(userId).count();
 
@@ -12,17 +13,17 @@ export const getFavoritesController = async (req, res) => {
     "-createdAt -updatedAt"
   );
 
-  if (userDataWithNotices.favoriteNotices.length === 0) {
+  const favorites = userDataWithNotices.favoriteNotices;
+  if (favorites.length === 0) {
     throw new createError(404, `Not find any notices!`);
   }
 
-  userDataWithNotices.favoriteNotices.reverse();
+  const filteredBySearch = !search
+    ? favorites
+    : favorites.filter((notice) =>
+        notice.title.toLowerCase().includes(search.toLowerCase())
+      );
 
-  return res.json(
-    setSuccessResponseNotices(
-      200,
-      userDataWithNotices.favoriteNotices,
-      totalItems
-    )
-  );
+  favorites.reverse();
+  return res.json(setSuccessResponseNotices(200, filteredBySearch, totalItems));
 };
