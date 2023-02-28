@@ -6,14 +6,14 @@ export const getFavoritesController = async (req, res) => {
   const { userId } = req.user;
   const { search } = req.query;
 
-  const totalItems = await User.findById(userId).count();
-
   const userDataWithNotices = await User.findById(userId).populate(
     "favoriteNotices",
     "-createdAt -updatedAt"
   );
 
   const favorites = userDataWithNotices.favoriteNotices;
+  const totalItems = favorites.length;
+
   if (favorites.length === 0) {
     throw new createError(404, `Not find any notices!`);
   }
