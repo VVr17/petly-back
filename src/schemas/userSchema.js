@@ -39,7 +39,11 @@ export const userSchema = Joi.object({
       "Only letters can be accepted"
     )
     .required(),
-  birthday: Joi.date().less(Date.now()).format("DD.MM.YYYY"),
+  birthday: Joi.date()
+    .format("DD.MM.YYYY")
+    .max("now")
+    .default(null)
+    .allow("00.00.0000"),
   imageFile: Joi.object({
     originalname: Joi.string().required(),
     fieldname: Joi.string(),

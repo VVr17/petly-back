@@ -5,9 +5,10 @@ const Joi = BaseJoi.extend(JoiDate);
 export const userUpdateSchema = Joi.object({
   email: Joi.string()
     .regex(
-      /^([a-zA-Z][\w+-]+(?:\.\w+)?)@([\w-]+(?:\.[a-zA-Z]{2,3})+)$/,
+      /^(?=.{1,63}$)(?=.{2,}@)[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
       "Please enter a valid email address"
     )
+    .required()
     .min(12)
     .max(63),
   city: Joi.string()
@@ -27,9 +28,13 @@ export const userUpdateSchema = Joi.object({
       /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       "Only letters can be accepted"
     ),
-  birthday: Joi.date().less(Date.now()).format("DD.MM.YYYY"),
+  birthday: Joi.date()
+    .format("DD.MM.YYYY")
+    .max("now")
+    .default(null)
+    .allow("00.00.0000"),
   imageFile: Joi.object({
-    originalname: Joi.string(),
+    originalname: Joi.string,
     fieldname: Joi.string(),
     encoding: Joi.string(),
     mimetype: Joi.string(),
