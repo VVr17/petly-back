@@ -7,7 +7,12 @@ export const getFavoritesController = async (req, res) => {
   const { page = 1, limit = 12, search } = req.query;
   const skip = (page - 1) * limit;
 
-  const user = await User.findOne({ _id: userId });
+  const user = await User.findOne({ _id: userId }).populate({
+    path: "favoriteNotices",
+    options: {
+      select: "-createdAt -updatedAt",
+    },
+  });
   const totalItems = user.favoriteNotices.length;
 
   const userDataWithNotices = await User.findOne({ _id: userId }).populate({
