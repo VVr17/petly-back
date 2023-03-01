@@ -214,52 +214,6 @@
         }
       }
     },
-    "/api/notices": {
-      "get": {
-        "tags": ["Notices"],
-        "summary": "Get notices by key words",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "The number of page to set results",
-            "type": "integer"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The numbers of items to return",
-            "type": "integer"
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "required": true,
-            "description": "Key words to find notices",
-            "type": "string"
-          }
-        ],
-        "requestBody": {},
-        "responses": {
-          "200": {
-            "description": "Notices has been found successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Notices"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      }
-    },
     "/api/notices/user": {
       "get": {
         "tags": ["Notices"],
