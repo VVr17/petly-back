@@ -8,36 +8,25 @@ export const getFavoritesController = async (req, res) => {
 
   const user = await User.findOne({ _id: userId }).populate({
     path: "favoriteNotices",
+    match: { title: { $regex: new RegExp(search, "i") } },
     options: {
       select: "-createdAt -updatedAt",
     },
   });
   const totalItems = user.favoriteNotices.length;
-  const filteredTotal = !search
-    ? totalItems
-    : user.favoriteNotices.filter((notice) =>
-        notice.title.toLowerCase().includes(search.toLowerCase())
-      ).length;
 
   const userDataWithNotices = await User.findOne({ _id: userId }).populate({
     path: "favoriteNotices",
+    match: { title: { $regex: new RegExp(search, "i") } },
     options: {
       select: "-createdAt -updatedAt",
-      skip,
+      skip: Number(skip),
       limit: Number(limit),
     },
   });
 
   const favorites = userDataWithNotices.favoriteNotices;
 
-  const filteredBySearch = !search
-    ? favorites
-    : favorites.filter((notice) =>
-        notice.title.toLowerCase().includes(search.toLowerCase())
-      );
-
   favorites.reverse();
-  return res.json(
-    setSuccessResponseNotices(200, filteredBySearch, filteredTotal)
-  );
+  return res.json(setSuccessResponseNotices(200, favorites, totalItems));
 };
