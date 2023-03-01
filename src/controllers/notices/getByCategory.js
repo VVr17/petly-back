@@ -7,7 +7,11 @@ export const getByCategoryController = async (req, res) => {
   const { categoryName } = req.params;
   const skip = (page - 1) * limit;
 
-  const totalItems = await Notice.find({ category: categoryName }).count();
+  const totalItems = await Notice.find({
+    category: categoryName,
+    title: { $regex: new RegExp(search, "i") },
+  }).count();
+
   const data = await Notice.find(
     {
       category: categoryName,
