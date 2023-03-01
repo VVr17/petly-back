@@ -1,6 +1,5 @@
 import { User } from "../../models/userModel.js";
 import { setSuccessResponseNotices } from "../../helpers/setResponse.js";
-import createError from "http-errors";
 
 export const getFavoritesController = async (req, res) => {
   const { userId } = req.user;
@@ -36,7 +35,6 @@ export const getFavoritesController = async (req, res) => {
     : favorites.filter((notice) =>
         notice.title.toLowerCase().includes(search.toLowerCase())
       );
-  console.log("filteredBySearch", filteredBySearch);
 
   favorites.reverse();
   return res.json(
