@@ -4,15 +4,22 @@ import createError from "http-errors";
 
 export const getFavoritesController = async (req, res) => {
   const { userId } = req.user;
-  const { search } = req.query;
+  const { page = 1, limit = 12, search } = req.query;
+  const skip = (page - 1) * limit;
 
-  const userDataWithNotices = await User.findById(userId).populate(
-    "favoriteNotices",
-    "-createdAt -updatedAt"
-  );
+  const user = await User.findOne({ _id: userId });
+  const totalItems = user.favoriteNotices.length;
+
+  const userDataWithNotices = await User.findOne({ _id: userId }).populate({
+    path: "favoriteNotices",
+    options: {
+      select: "-createdAt -updatedAt",
+      skip,
+      limit: Number(limit),
+    },
+  });
 
   const favorites = userDataWithNotices.favoriteNotices;
-  const totalItems = favorites.length;
 
   const filteredBySearch = !search
     ? favorites
