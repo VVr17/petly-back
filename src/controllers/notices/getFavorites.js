@@ -14,6 +14,11 @@ export const getFavoritesController = async (req, res) => {
     },
   });
   const totalItems = user.favoriteNotices.length;
+  const filteredTotal = !search
+    ? totalItems
+    : user.favoriteNotices.filter((notice) =>
+        notice.title.toLowerCase().includes(search.toLowerCase())
+      ).length;
 
   const userDataWithNotices = await User.findOne({ _id: userId }).populate({
     path: "favoriteNotices",
@@ -31,7 +36,10 @@ export const getFavoritesController = async (req, res) => {
     : favorites.filter((notice) =>
         notice.title.toLowerCase().includes(search.toLowerCase())
       );
+  console.log("filteredBySearch", filteredBySearch);
 
   favorites.reverse();
-  return res.json(setSuccessResponseNotices(200, filteredBySearch, totalItems));
+  return res.json(
+    setSuccessResponseNotices(200, filteredBySearch, filteredTotal)
+  );
 };
