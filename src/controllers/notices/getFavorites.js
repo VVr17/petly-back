@@ -4,8 +4,7 @@ import createError from "http-errors";
 
 export const getFavoritesController = async (req, res) => {
   const { userId } = req.user;
-  const { page = 1, limit = 12, search } = req.query;
-  const skip = (page - 1) * limit;
+  const { search } = req.query;
 
   const userDataWithNotices = await User.findById(userId).populate(
     "favoriteNotices",
