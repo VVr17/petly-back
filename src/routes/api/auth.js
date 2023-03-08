@@ -26,7 +26,7 @@ router.post(
   errorWrapper(signupController)
 );
 router.post("/login", validateBody(loginSchema), errorWrapper(loginController));
-router.get(
+router.post(
   "/google/login",
   validateBody(googleAuthUserSchema),
   errorWrapper(googleAuthController)
