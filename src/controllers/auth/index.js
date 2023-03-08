@@ -3,7 +3,7 @@ import { loginController } from "./login.js";
 import { logoutController } from "./logout.js";
 import { getCurrentUserController } from "./getCurrent.js";
 import { updateUserController } from "./updateUser.js";
-
+import { googleAuthController } from "./googleAuth.js";
 
 export {
   signupController,
@@ -11,4 +11,5 @@ export {
   logoutController,
   getCurrentUserController,
   updateUserController,
+  googleAuthController,
 };

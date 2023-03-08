@@ -8,6 +8,7 @@ export const signupController = async (req, res) => {
     const { email, name, city, phone, _id } = await User.create({
       ...req.body,
     });
+
     const token = await createAndUpdateJwt(_id);
 
     const newUser = {

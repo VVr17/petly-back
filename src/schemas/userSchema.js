@@ -24,16 +24,14 @@ export const userSchema = Joi.object({
     .regex(
       /^[a-zA-Zа-яА-ЯіІїЇ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇ]+)*,\s*[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
       "Should be at least two words separated by string"
-    )
-    .required(),
+    ),
   phone: Joi.string()
     .min(13)
     .max(13)
-    .regex(/^\+380\d{9}$/, "match +380123456789")
-    .required(),
+    .regex(/^\+380\d{9}$/, "match +380123456789"),
   name: Joi.string()
     .min(3)
-    .max(12)
+    .max(32)
     .regex(
       /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       "Only letters can be accepted"

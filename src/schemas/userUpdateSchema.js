@@ -22,7 +22,7 @@ export const userUpdateSchema = Joi.object({
     .regex(/^\+380\d{9}$/, "match +380123456789"),
   name: Joi.string()
     .min(3)
-    .max(12)
+    .max(32)
     .regex(
       /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/,
       "Only letters can be accepted"

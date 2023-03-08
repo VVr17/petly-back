@@ -27,7 +27,7 @@ const userSchema = new Schema(
         "Only letters can be accepted",
       ],
       minLength: 3,
-      maxLength: 12,
+      maxLength: 32,
     },
     birthday: {
       type: String,
@@ -35,28 +35,28 @@ const userSchema = new Schema(
     },
     city: {
       type: String,
-      required: [true, "City/region is required"],
       match: [
         /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇґҐ]+),\s[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
         "Should be at least two words separated by string",
       ],
+      default: null,
     },
     phone: {
       type: String,
-      required: [true, "Phone is required"],
       match: [/^\+380\d{9}$/, "Please enter a valid phone"],
       minLength: 13,
       maxLength: 13,
+      default: null,
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
       match: [
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
         "Please enter a valid password",
       ],
       minLength: 7,
       maxLength: 32,
+      default: null,
     },
     token: {
       type: String,
@@ -85,7 +85,7 @@ const userSchema = new Schema(
 );
 
 userSchema.pre("save", async function () {
-  if (this.isNew) {
+  if (this.isNew && this.password) {
     this.password = await bcrypt.hash(this.password, 10); // hash password
   }
 });
