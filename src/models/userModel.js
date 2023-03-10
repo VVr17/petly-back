@@ -39,14 +39,14 @@ const userSchema = new Schema(
         /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?:[-\s]?[a-zA-Zа-яА-ЯіІїЇґҐ]+),\s[a-zA-Zа-яА-ЯіІїЇ'’\s-]+$/,
         "Should be at least two words separated by string",
       ],
-      default: "",
+      default: null,
     },
     phone: {
       type: String,
       match: [/^\+380\d{9}$/, "Please enter a valid phone"],
       minLength: 13,
       maxLength: 13,
-      default: "",
+      default: null,
     },
     password: {
       type: String,
