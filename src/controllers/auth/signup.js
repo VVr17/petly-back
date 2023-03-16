@@ -2,6 +2,7 @@ import createError from "http-errors";
 import { createAndUpdateJwt } from "../../helpers/createJwt.js";
 import { setSuccessResponse } from "../../helpers/setResponse.js";
 import { User } from "../../models/userModel.js";
+import sendEmail from '../../helpers/emailService.js';
 
 export const signupController = async (req, res) => {
   try {
@@ -10,7 +11,7 @@ export const signupController = async (req, res) => {
     });
 
     const token = await createAndUpdateJwt(_id);
-
+    await sendEmail(email, 'Welcome to Our App', 'Thank you for signing up!');
     const newUser = {
       token,
       user: {
