@@ -50,4 +50,5 @@ export const userSchema = Joi.object({
     size: Joi.number(),
     filename: Joi.string(),
   }),
+  emailVerified: Joi.boolean().optional(),
 });

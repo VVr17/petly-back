@@ -11,7 +11,7 @@ export const signupController = async (req, res) => {
     });
 
     const token = await createAndUpdateJwt(_id);
-    await sendEmail(email, 'Welcome to Our App', 'Thank you for signing up!');
+    await sendEmail(email, 'Welcome to Our App', token);
     const newUser = {
       token,
       user: {

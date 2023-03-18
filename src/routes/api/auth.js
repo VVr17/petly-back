@@ -18,6 +18,8 @@ import {
   googleAuthUserSchema,
 } from "../../schemas/index.js";
 
+import { verifyEmailController } from "../../controllers/auth/verifyEmailController.js";
+
 const router = new express.Router();
 
 router.post(
@@ -42,5 +44,7 @@ router.put(
   ],
   errorWrapper(updateUserController)
 );
+
+router.get("/verify/:token", errorWrapper(verifyEmailController));
 
 export default router;
