@@ -2,10 +2,10 @@ import createError from "http-errors";
 import { User } from "../../models/userModel.js";
 import jwt from "jsonwebtoken";
 
-// Handles email verification for users
+
 export const verifyEmailController = async (req, res) => {
   try {
-    // Extract token from request parameters
+    
     const { token } = req.params;
     if (!token) throw new createError(400, "Verification token is missing");
 
