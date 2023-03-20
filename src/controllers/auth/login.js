@@ -12,7 +12,7 @@ export const loginController = async (req, res) => {
 
   const user = await User.findOne(
     { email },
-    { email: 1, password: 1, name: 1, city: 1, phone: 1, emailVerified: 1 }
+    { email: 1, password: 1, name: 1, city: 1, phone: 1, emailVerified: 1 } 
   );
 
   if (!user) {
