@@ -5,7 +5,6 @@ import { User } from "../../models/userModel.js";
 import { Pet } from "../../models/petModel.js";
 import { setSuccessResponse } from "../../helpers/setResponse.js";
 import { createAndUpdateJwt } from "../../helpers/createJwt.js";
-import sendEmail from '../../helpers/emailService.js';
 
 export const loginController = async (req, res) => {
   const { email, password } = req.body;

@@ -7,7 +7,8 @@ const { SENDGRID_API_KEY } = process.env;
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 export default async function sendEmail(to, subject, token = null) {
-  const link = token ? `http://localhost:3000/api/auth/verify/${token}` : '';
+  const link = token ? `https://pet-support.up.railway.app/api/auth/verify/${token}` : '';
+
 
   const htmlContent = `
     <h1>${subject}</h1>
