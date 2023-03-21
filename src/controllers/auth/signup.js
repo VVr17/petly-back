@@ -4,6 +4,8 @@ import { setSuccessResponse } from "../../helpers/setResponse.js";
 import { User } from "../../models/userModel.js";
 import sendEmail from "../../helpers/emailService.js";
 
+const { EMAIL_VERIFICATION_SECRET } = process.env;
+
 export const signupController = async (req, res) => {
   try {
     // Create a new user in the database
@@ -14,7 +16,7 @@ export const signupController = async (req, res) => {
     // Generate a JWT for email verification
     const token = await createAndUpdateJwt(
       _id,
-      process.env.EMAIL_VERIFICATION_SECRET,
+      EMAIL_VERIFICATION_SECRET,
       "24h"
     );
 

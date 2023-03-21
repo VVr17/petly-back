@@ -27,12 +27,15 @@ router.post(
   validateBody(userSchema),
   errorWrapper(signupController)
 );
+router.get("/verify/:token", errorWrapper(verifyEmailController));
+
 router.post("/login", validateBody(loginSchema), errorWrapper(loginController));
 router.post(
   "/google/login",
   validateBody(googleAuthUserSchema),
   errorWrapper(googleAuthController)
 );
+
 router.get("/logout", authMiddleware, errorWrapper(logoutController));
 router.get("/current", authMiddleware, errorWrapper(getCurrentUserController));
 router.put(
@@ -44,7 +47,5 @@ router.put(
   ],
   errorWrapper(updateUserController)
 );
-
-router.get("/verify/:token", errorWrapper(verifyEmailController));
 
 export default router;

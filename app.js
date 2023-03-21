@@ -41,6 +41,12 @@ app.use((err, req, res, next) => {
     return res.status(400).json({ message });
   }
 
+  if (err.name === "TokenExpiredError" || err.name === "JsonWebTokenError") {
+    return res
+      .status(400)
+      .json({ message: `Verification token error: ${err.message}` });
+  }
+
   res.status(500).json({ message: "Internal Server Error" });
 });
 
