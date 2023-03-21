@@ -11,17 +11,14 @@ export default async function sendEmail(to, subject, token = null) {
     ? `https://pet-support.up.railway.app/api/auth/verify/${token}`
     : "";
 
-  const htmlContent = `
-    <h1>${subject}</h1>
-    <p>${token ? `Click the link below to continue:` : ""}</p>
-    ${link ? `<a href="${link}" target="_blank">Click here</a>` : ""}
-  `;
-
   const msg = {
     to,
     from: "ili.nandr.ii.85@gmail.com",
-    subject,
-    html: htmlContent,
+    template_id: "d-945c1a5f8dfb498b8bc61f7e218633c4",
+    dynamic_template_data: {
+      subject,
+      verificationLink: link,
+    },
   };
 
   try {
