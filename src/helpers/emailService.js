@@ -26,7 +26,6 @@ export default async function sendEmail(to, subject, token = null) {
 
   try {
     const response = await sgMail.send(msg);
-    console.log("Email sent successfully");
     return response;
   } catch (error) {
     console.error("Error sending email:", error);

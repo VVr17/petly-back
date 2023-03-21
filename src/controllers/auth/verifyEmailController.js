@@ -2,13 +2,15 @@ import createError from "http-errors";
 import { User } from "../../models/userModel.js";
 import jwt from "jsonwebtoken";
 
+const { EMAIL_VERIFICATION_SECRET } = process.env;
+
 export const verifyEmailController = async (req, res) => {
   // Extract token from request parameters
   const { token } = req.params;
   if (!token) throw new createError(400, "Verification token is missing");
 
   // Verify the token and get the userId
-  const { userId } = jwt.verify(token, process.env.EMAIL_VERIFICATION_SECRET);
+  const { userId } = jwt.verify(token, EMAIL_VERIFICATION_SECRET);
 
   // Find the user by their ID
   const user = await User.findById(userId);
