@@ -17,7 +17,7 @@ export const signupController = async (req, res) => {
     const token = await createAndUpdateJwt(
       _id,
       EMAIL_VERIFICATION_SECRET,
-      "24h"
+      "365d"
     );
 
     // Send a welcome email with the email verification link
