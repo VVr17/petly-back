@@ -17,7 +17,8 @@ export default async function sendEmail(to, subject, token = null) {
     template_id: "d-945c1a5f8dfb498b8bc61f7e218633c4",
     dynamic_template_data: {
       subject,
-      verificationLink: link,
+      // verificationLink: link,
+      href: link,
     },
   };
 
