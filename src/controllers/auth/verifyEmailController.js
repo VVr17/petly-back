@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 
 export const verifyEmailController = async (req, res) => {
   try {
-
     // Extract token from request parameters
     const { token } = req.params;
     if (!token) throw new createError(400, "Verification token is missing");
@@ -17,18 +16,20 @@ export const verifyEmailController = async (req, res) => {
     if (!user) throw new createError(404, "User not found");
 
     // Check if the email is already verified
-    if (user.emailVerified) throw new createError(400, "Email is already verified");
+    if (user.emailVerified)
+      throw new createError(400, "Email is already verified");
 
     // Update the user's email verification status
     await User.findByIdAndUpdate(userId, { emailVerified: true });
 
-    // Redirect the user to the URL after successful verification  
+    // Redirect the user to the URL after successful verification
     res.redirect("https://petly-alpha.vercel.app/emailVerified");
-      
-      
   } catch (error) {
     // Handle token errors (expired or invalid)
-    if (error.name === "TokenExpiredError" || error.name === "JsonWebTokenError") {
+    if (
+      error.name === "TokenExpiredError" ||
+      error.name === "JsonWebTokenError"
+    ) {
       next(new createError(400, `Verification token error: ${error.message}`));
     }
     // Pass other errors to the next middleware
