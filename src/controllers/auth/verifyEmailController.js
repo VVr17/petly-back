@@ -17,8 +17,9 @@ export const verifyEmailController = async (req, res) => {
   if (!user) throw new createError(404, "User not found");
 
   // Check if the email is already verified
-  if (user.emailVerified)
-    throw new createError(400, "Email is already verified");
+  if (user.emailVerified) {
+    res.redirect("https://petly-alpha.vercel.app/emailVerified");
+  }
 
   // Update the user's email verification status
   await User.findByIdAndUpdate(userId, { emailVerified: true });
