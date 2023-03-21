@@ -31,7 +31,7 @@ app.use((_, res) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log("error", error.stack);
+  console.log("error", err.stack);
 
   if (err.status) {
     const { status, message } = err;
