@@ -31,6 +31,8 @@ app.use((_, res) => {
 });
 
 app.use((err, req, res, next) => {
+  console.log("error", error.stack);
+
   if (err.status) {
     const { status, message } = err;
     return res.status(status).json({ message });
