@@ -11,9 +11,9 @@ export default async function sendEmail(to, subject, token = null, templateId) {
   
   if (token) {
     if (subject === "Email Verification") {
-      link = `http://localhost:3000/api/auth/verify/${token}`;
+      link = `https://pet-support.up.railway.app/api/auth/verify/${token}`;
     } else if (subject === "Password Reset Request") {
-      link = `http://localhost:3000/api/auth/reset-password?token=${token}`;
+      link = `https://pet-support.up.railway.app/api/auth/reset-password?token=${token}`;
     }
   }
 
@@ -27,7 +27,6 @@ export default async function sendEmail(to, subject, token = null, templateId) {
     },
   };
 
-  console.log('Button link:', link);
 
   try {
     const response = await sgMail.send(msg);

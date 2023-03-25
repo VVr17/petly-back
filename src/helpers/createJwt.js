@@ -15,6 +15,5 @@ export const createAndUpdateJwt = async (
     expiresIn,
   }); // token expiration in 24hours by default
   await User.findOneAndUpdate({ _id: userId }, { token });
-
   return token;
 };
