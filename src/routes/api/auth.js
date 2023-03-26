@@ -1,7 +1,4 @@
 import express from "express";
-import { authMiddleware } from "../../middlewares/authMiddleware.js";
-import { uploadCloud } from "../../middlewares/uploadMiddleware.js";
-import { validateBody } from "../../middlewares/validateBody.js";
 import { errorWrapper } from "../../helpers/errorWrapper.js";
 import {
   signupController,
@@ -10,6 +7,8 @@ import {
   getCurrentUserController,
   updateUserController,
   googleAuthController,
+  verifyEmailController,
+  resendEmailVerificationController,
   forgotPasswordController,
   resetPasswordController,
 } from "../../controllers/auth/index.js";
@@ -18,9 +17,13 @@ import {
   userSchema,
   userUpdateSchema,
   googleAuthUserSchema,
+  resendEmailSchema,
 } from "../../schemas/index.js";
-
-import { verifyEmailController } from "../../controllers/auth/verifyEmailController.js";
+import {
+  authMiddleware,
+  uploadCloud,
+  validateBody,
+} from "../../middlewares/index.js";
 
 const router = new express.Router();
 
@@ -30,6 +33,11 @@ router.post(
   errorWrapper(signupController)
 );
 router.get("/verify/:token", errorWrapper(verifyEmailController));
+router.post(
+  "/verify",
+  validateBody(resendEmailSchema),
+  errorWrapper(resendEmailVerificationController)
+);
 
 router.post("/login", validateBody(loginSchema), errorWrapper(loginController));
 router.post(
@@ -49,7 +57,6 @@ router.put(
   ],
   errorWrapper(updateUserController)
 );
-
 
 router.post("/forgot-password", errorWrapper(forgotPasswordController));
 router.post("/reset-password", errorWrapper(resetPasswordController));

@@ -1,13 +1,15 @@
 import express from "express";
-import { authMiddleware } from "../../middlewares/authMiddleware.js";
 import { errorWrapper } from "../../helpers/errorWrapper.js";
-import { validateBody } from "../../middlewares/validateBody.js";
+import {
+  authMiddleware,
+  uploadCloud,
+  validateBody,
+} from "../../middlewares/index.js";
 import {
   addPetController,
   deletePetController,
 } from "../../controllers/pets/index.js";
-import { petSchema } from "../../schemas/petSchema.js";
-import { uploadCloud } from "../../middlewares/uploadMiddleware.js";
+import { petSchema } from "../../schemas/index.js";
 
 const router = new express.Router();
 

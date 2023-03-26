@@ -4,8 +4,10 @@ import { logoutController } from "./logout.js";
 import { getCurrentUserController } from "./getCurrent.js";
 import { updateUserController } from "./updateUser.js";
 import { googleAuthController } from "./googleAuth.js";
-import { forgotPasswordController} from "./forgotAndResetPassword.js"; 
-import { resetPasswordController} from "./forgotAndResetPassword.js"; 
+import { verifyEmailController } from "./verifyEmailController.js";
+import { resendEmailVerificationController } from "./resendEmailVerification.js";
+import { forgotPasswordController } from "./forgotAndResetPassword.js";
+import { resetPasswordController } from "./forgotAndResetPassword.js";
 
 export {
   signupController,
@@ -14,6 +16,8 @@ export {
   getCurrentUserController,
   updateUserController,
   googleAuthController,
+  verifyEmailController,
+  resendEmailVerificationController,
   forgotPasswordController,
-  resetPasswordController
+  resetPasswordController,
 };
