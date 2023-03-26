@@ -27,6 +27,7 @@
     "cloudinary": "^1.34.0",
     "cors": "2.8.5",
     "cross-env": "7.0.3",
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.3",
     "express": "4.17.1",
     "formidable": "^2.1.1",

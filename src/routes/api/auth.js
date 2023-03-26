@@ -9,6 +9,8 @@ import {
   googleAuthController,
   verifyEmailController,
   resendEmailVerificationController,
+  forgotPasswordController,
+  resetPasswordController,
 } from "../../controllers/auth/index.js";
 import {
   loginSchema,
@@ -55,5 +57,8 @@ router.put(
   ],
   errorWrapper(updateUserController)
 );
+
+router.post("/forgot-password", errorWrapper(forgotPasswordController));
+router.post("/reset-password", errorWrapper(resetPasswordController));
 
 export default router;
