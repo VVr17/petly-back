@@ -1,4 +1,9 @@
+import createError from "http-errors";
+import { createAndUpdateJwt } from "../../helpers/createJwt.js";
+import sendEmail from "../../helpers/emailService.js";
 import { User } from "../../models/userModel.js";
+
+const { EMAIL_VERIFICATION_SECRET } = process.env;
 
 export const resendEmailVerificationController = async (req, res) => {
   const { email } = req.body;
@@ -10,16 +15,13 @@ export const resendEmailVerificationController = async (req, res) => {
   }
 
   // Check if user's email has been verified
-  if (!user.emailVerified) {
-    throw new createError(
-      401,
-      "Email not verified. Please verify your email before logging in."
-    );
+  if (user.emailVerified) {
+    throw new createError(400, "Email has already been verified");
   }
 
   // Generate a JWT for email verification
   const token = await createAndUpdateJwt(
-    _id,
+    user._id,
     EMAIL_VERIFICATION_SECRET,
     "365d"
   );
