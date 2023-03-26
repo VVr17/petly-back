@@ -57,11 +57,11 @@
         },
         "responses": {
           "201": {
-            "description": "User added successfully",
+            "description": "User created successfully. Verification email has been sent to your email ",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
+                  "$ref": "#/components/schemas/RegistrationResponse"
                 }
               }
             }
@@ -667,6 +667,15 @@
             "type": "string",
             "description": "User`s phone",
             "example": "+380123456789"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "$ref": "#/components/schemas/User"
           }
         }
       },
