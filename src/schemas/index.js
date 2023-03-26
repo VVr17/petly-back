@@ -4,6 +4,7 @@ import { userUpdateSchema } from "./userUpdateSchema.js";
 import { googleAuthUserSchema } from "./googleAuthUserSchema.js";
 import { noticeSchema } from "./noticeSchema.js";
 import { petSchema } from "./petSchema.js";
+import { resendEmailSchema } from "./resendEmailSchema.js";
 
 export {
   loginSchema,
@@ -12,4 +13,5 @@ export {
   googleAuthUserSchema,
   noticeSchema,
   petSchema,
+  resendEmailSchema,
 };

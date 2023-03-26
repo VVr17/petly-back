@@ -1,5 +1,9 @@
 import express from "express";
-import { authMiddleware } from "../../middlewares/authMiddleware.js";
+import {
+  authMiddleware,
+  uploadCloud,
+  validateNoticeBody,
+} from "../../middlewares/index.js";
 import { errorWrapper } from "../../helpers/errorWrapper.js";
 import {
   getByCategoryController,
@@ -11,8 +15,6 @@ import {
   removeNoticeController,
   getUserNoticesController,
 } from "../../controllers/notices/index.js";
-import { validateNoticeBody } from "../../middlewares/validateNoticeBody.js";
-import { uploadCloud } from "../../middlewares/uploadMiddleware.js";
 
 const router = new express.Router();
 

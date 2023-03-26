@@ -1,8 +1,6 @@
-import * as dotenv from "dotenv";
 import createError from "http-errors";
 import bcrypt from "bcrypt";
 import { User } from "../../models/userModel.js";
-import { Pet } from "../../models/petModel.js";
 import { setSuccessResponse } from "../../helpers/setResponse.js";
 import { createAndUpdateJwt } from "../../helpers/createJwt.js";
 
@@ -11,7 +9,7 @@ export const loginController = async (req, res) => {
 
   const user = await User.findOne(
     { email },
-    { email: 1, password: 1, name: 1, city: 1, phone: 1, emailVerified: 1 } 
+    { email: 1, password: 1, name: 1, city: 1, phone: 1, emailVerified: 1 }
   );
 
   if (!user) {
@@ -25,7 +23,10 @@ export const loginController = async (req, res) => {
 
   // Check if user's email has been verified
   if (!user.emailVerified) {
-    throw new createError(401, 'Email not verified. Please verify your email before logging in.');
+    throw new createError(
+      401,
+      "Email not verified. Please verify your email before logging in."
+    );
   }
 
   const token = await createAndUpdateJwt(user._id);

@@ -4,6 +4,8 @@ import { logoutController } from "./logout.js";
 import { getCurrentUserController } from "./getCurrent.js";
 import { updateUserController } from "./updateUser.js";
 import { googleAuthController } from "./googleAuth.js";
+import { verifyEmailController } from "./verifyEmailController.js";
+import { resendEmailVerificationController } from "./resendEmailVerification.js";
 
 export {
   signupController,
@@ -12,4 +14,6 @@ export {
   getCurrentUserController,
   updateUserController,
   googleAuthController,
+  verifyEmailController,
+  resendEmailVerificationController,
 };
