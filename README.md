@@ -13,6 +13,7 @@ You can find front-end on "Petly": https://petly-alpha.vercel.app/
         npm install
 
   * You'll also need to create a .env file in the root of the project, with the following environment variables:
+        
         PORT=3000
         DATABASE_URL=<your MongoDB connection string>
         JWT_SECRET=<a secret string for JSON Web Tokens>
@@ -34,7 +35,8 @@ You can find front-end on "Petly": https://petly-alpha.vercel.app/
   
         npm start
 
-  * This will run the server in production mode, which serves the API at http://localhost:3000. If you want to run the server in development mode, with automatic reloading on file changes, you can use:
+ This will run the server in production mode, which serves the API at http://localhost:3000. 
+ * If you want to run the server in development mode, with automatic reloading on file changes, you can use:
   
         npm run start:dev
 
