@@ -8,12 +8,13 @@ sgMail.setApiKey(SENDGRID_API_KEY);
 
 export default async function sendEmail(to, subject, token = null, templateId) {
   let link = "";
-  
+
   if (token) {
     if (subject === "Email Verification") {
       link = `https://pet-support.up.railway.app/api/auth/verify/${token}`;
     } else if (subject === "Password Reset Request") {
-      link = `https://pet-support.up.railway.app/api/auth/reset-password?token=${token}`;
+      // link = `https://pet-support.up.railway.app/api/auth/reset-password?token=${token}`;
+      link = `https://petly-alpha.vercel.app/reset-password/${token}`;
     }
   }
 
@@ -26,7 +27,6 @@ export default async function sendEmail(to, subject, token = null, templateId) {
       buttonLink: link,
     },
   };
-
 
   try {
     const response = await sgMail.send(msg);
