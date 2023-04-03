@@ -2,7 +2,7 @@ import sgMail from "@sendgrid/mail";
 import dotenv from "dotenv";
 
 dotenv.config();
-const { SENDGRID_API_KEY } = process.env;
+const { SENDGRID_API_KEY, BASE_BACK_URL, BASE_FRONT_URL } = process.env;
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 
@@ -11,10 +11,9 @@ export default async function sendEmail(to, subject, token = null, templateId) {
 
   if (token) {
     if (subject === "Email Verification") {
-      link = `https://pet-support.up.railway.app/api/auth/verify/${token}`;
+      link = `${BASE_BACK_URL}/api/auth/verify/${token}`;
     } else if (subject === "Password Reset Request") {
-      // link = `https://pet-support.up.railway.app/api/auth/reset-password?token=${token}`;
-      link = `https://petly-alpha.vercel.app/reset-password/${token}`;
+      link = `${BASE_FRONT_URL}/reset-password/${token}`;
     }
   }
 

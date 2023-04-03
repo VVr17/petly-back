@@ -2,7 +2,7 @@ import createError from "http-errors";
 import { User } from "../../models/userModel.js";
 import jwt from "jsonwebtoken";
 
-const { EMAIL_VERIFICATION_SECRET } = process.env;
+const { EMAIL_VERIFICATION_SECRET, BASE_FRONT_URL } = process.env;
 
 export const verifyEmailController = async (req, res) => {
   // Extract token from request parameters
@@ -18,12 +18,12 @@ export const verifyEmailController = async (req, res) => {
 
   // Check if the email is already verified
   if (user.emailVerified) {
-    res.redirect("https://petly-alpha.vercel.app/emailVerified");
+    res.redirect(`${BASE_FRONT_URL}/emailVerified`);
   }
 
   // Update the user's email verification status
   await User.findByIdAndUpdate(userId, { emailVerified: true });
 
   // Redirect the user to the URL after successful verification
-  res.redirect("https://petly-alpha.vercel.app/emailVerified");
+  res.redirect(`${BASE_FRONT_URL}/emailVerified`);
 };
