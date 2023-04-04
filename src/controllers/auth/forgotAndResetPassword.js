@@ -9,6 +9,9 @@ import createError from "http-errors";
 const resetPasswordTemplateID = "d-d80e6f828521438e976f6763c9a3acb0";
 const { PASSWORD_RESET_SECRET } = process.env;
 
+
+
+
 // Forgot password controller
 export const forgotPasswordController = async (req, res) => {
     
@@ -44,7 +47,21 @@ export const forgotPasswordController = async (req, res) => {
   res.status(200).json({ message: "Reset email sent" });
 };
 
+
+
+
+
 // Reset password controller
+
+// Check if the token is valid
+const isTokenValid = (user, decoded) => {
+  return (
+    user.resetToken === decoded.resetToken &&
+    user.resetTokenExpiration > Date.now()
+  );
+};
+
+
 export const resetPasswordController = async (req, res) => {
   const { token, newPassword } = req.body;
 
@@ -61,16 +78,14 @@ export const resetPasswordController = async (req, res) => {
     }
 
     // Check if the reset token is valid and not expired
-    if (
-      user.resetToken === decoded.resetToken &&
-      user.resetTokenExpiration > Date.now()
-    ) {
-      // Hash the new password and update the user document
+    if (isTokenValid(user, decoded)) {
+      
+      // Update the user
       const hashedPassword = await bcrypt.hash(newPassword, 12);
       await User.findByIdAndUpdate(userId, {
         password: hashedPassword,
-        resetToken: undefined,
-        resetTokenExpiration: undefined,
+        resetToken: null,
+        resetTokenExpiration: null,
       });
       res.status(200).json({ message: "Password updated successfully" });
     } else {
@@ -80,3 +95,4 @@ export const resetPasswordController = async (req, res) => {
     throw new createError(400, "Invalid token");
   }
 };
+

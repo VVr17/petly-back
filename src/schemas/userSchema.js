@@ -53,4 +53,6 @@ export const userSchema = Joi.object({
     filename: Joi.string(),
   }),
   emailVerified: Joi.boolean().optional(),
+  resetToken: Joi.string().hex().allow(null).optional(),
+  resetTokenExpiration: Joi.date().timestamp().allow(null).optional(),
 });
